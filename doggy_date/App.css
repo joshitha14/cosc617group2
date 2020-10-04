@@ -1,0 +1,193 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+  margin: 0;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+header{
+  display: flex;
+  margin: auto;
+  width:90%;
+  align-items: center;
+  background: white;
+ position: sticky;
+  top:0;
+}
+.menu{
+  display: flex;
+ justify-content: space-around;
+  list-style: none;
+  float: right;
+  font-size: 22px;
+  text-decoration: none;
+  color:brown;
+
+}
+
+nav{
+  flex:1;
+
+}
+.menu a{
+  font-size: 22px;
+  text-decoration: none;
+  color:brown;
+  
+
+}
+.menu li
+{
+  padding: 5px 30px;
+  margin:5px;
+}
+.logo{
+ 
+padding: 10px 10px;
+align-items: center;
+
+
+
+
+}
+.signup{
+  background-color:white;
+  border-radius: 5px;;
+
+}
+.signin{
+  border: 2px solid brown;
+  border-radius: 5px;;
+}
+.signup a{
+  color:white;
+}
+header h4{
+  
+  font-size: 15px;
+}
+
+.mainheading{
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 5%;
+
+}
+
+.mainheading h1{
+  color:black;
+  font-size: 60px;
+}
+
+.presentation{
+  display: flex;
+  width: 90%;
+  margin:auto;
+ 
+}
+
+.imagebanner img{
+
+  width: 100%;
+}
+.logo img {
+  height: 10vh;
+}
+
+.buy{
+  padding:10px 20px;
+  color: white;
+  outline-style: hidden;
+  background-color: brown;
+  font-size: 26px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+ 
+
+
+}
+
+.compare{
+  
+  padding:10px 20px;
+  color: brown;
+  border: 2px solid brown;
+  font-size:12px;
+  background:transparent;
+  cursor:pointer;
+}
+
+.cta{
+  padding: 20px;
+}
+
+.mainheading p{
+  color:brown;
+  font-size:28px;
+  
+}
+
+li a:hover{
+  color:black;
+}
+
+.container{
+  background-color:lightgray;
+  text-align: center;
+}
+.container a {
+  text-decoration: none;
+  color:brown;
+  font-size: 22px;
+ 
+
+
+}
+a:hover{
+  color:black;
+}
+
+.loginform{
+  width:440px;
+  height: auto;
+  background-color:brown;
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  color:white;
+  margin-left: 30%;
+
+padding-top: 10px;
+padding-bottom: 10px;
+  
+}
+.loginform input[type=text], input[type=password], input[type=date]
+{
+  border:none;
+  background: white;
+  outline: none;
+  border-radius: 20px;
+  height: 15px;
+  width: 200px;
+  padding: 10px;
+
+}
+.loginform input[type=submit]
+{
+ padding:10px 20px;
+  color: #fff;
+  border: 2px solid #fff;
+  
+  background:transparent;
+
+  font-size: 20px;
+
+  width: 200px;
+  margin-top: 30px;
+}
