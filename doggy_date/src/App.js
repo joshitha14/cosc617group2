@@ -13,9 +13,9 @@ function App ()
   return(
     <Router>
     <div>
-      <Menu/>
-      <Header/>
+      
       <Switch>
+    <Route path="/" exact component={Home}/>
     <Route path ="/signup" component={Signup} />
     <Route path ="/login"  component={Login}/>
     </Switch>
@@ -24,3 +24,10 @@ function App ()
   );
 }
 export default App;
+
+const Home =()=>(
+  <div>
+    <Menu/>
+      <Header/>
+    </div>
+)

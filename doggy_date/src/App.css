@@ -99,7 +99,7 @@ header h4{
   height: 10vh;
 }
 
-.buy{
+.learnmore{
   padding:10px 20px;
   color: white;
   outline-style: hidden;
@@ -113,7 +113,7 @@ header h4{
 
 }
 
-.compare{
+.buttonwithpointer{
   
   padding:10px 20px;
   color: brown;
@@ -155,30 +155,55 @@ a:hover{
 
 .loginform{
   width:440px;
-  height: 630px;
+  height: auto;
   background-color:brown;
   text-align: center;
   border-radius: 10px;
   font-family: 'Poppins', sans-serif;
   color:white;
+  margin-left: 30%;
+
+padding-top: 10px;
+padding-bottom: 20px;
+  
 }
-.loginform input[type=text], input[type=password] 
+.loginform input[type=text], input[type=password], input[type=date], input[type=number]
 {
-  
-  border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
+  border:none;
+  background: white;
   outline: none;
-  
-  
-  
+  border-radius: 20px;
+  height: 15px;
+  width: 200px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+
+
 }
+
+#custom-select
+{
+   border:none;
+  outline: none;
+  border-radius: 20px;
+  height: 35px;
+  width: 200px;
+  padding: 10px;
+
+}
+
+
 .loginform input[type=submit]
 {
  padding:10px 20px;
   color: #fff;
   border: 2px solid #fff;
-  font-size:12px;
+  
   background:transparent;
-  cursor:pointer; 
+
+  font-size: 20px;
+
+  width: 200px;
+  margin-top: 30px;
 }

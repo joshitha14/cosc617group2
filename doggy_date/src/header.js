@@ -13,7 +13,7 @@ function Header() {
                         <p> <b>Start finding a friend for your dog. Or a partner?</b> </p>
                         <p>Lorem Ipsum another headline title goes here </p>
                         <div className="cta">
-                            <button className="buy"> Learn More </button>
+                            <button className="learnmore"> Learn More </button>
 
                         </div>
                     </div>

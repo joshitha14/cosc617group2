@@ -10,17 +10,18 @@ function Login ()
     <div>
       <Menu/>
       <div className="loginform">
-      <h1>Login Page</h1>
-      <from>
-        <label for="username">User Name</label>
+      <h1>WELCOME, DOG LOVERS!</h1>
+      <form>
+        <p>User Name</p>
         <input type="text" name="username" /> <br />
         
-        <label for="password">Password</label>
+        <p>Password</p>
         <input type="password" name="password" /> <br/>
 
-      <input type="submit" value="submit" />
-
-      </from>
+      <input type="submit" value="LOG IN" />
+    <p>Forgot Password?</p>
+    <p>Don't have an account?</p>
+      </form>
       </div>
     </div>
   );
