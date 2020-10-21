@@ -1,12 +1,16 @@
 CREATE TABLE USERS
     (Username         VARCHAR(45)       NOT NULL,
-     First_name       VARCHAR(45)       NOT NULL,
-     Birthdate        DATE              NOT NULL,
-     Sex              CHAR(1)           NOT NULL,
-     Spayed_neutered  BIT               NOT NULL,
-     Weight           INT               NOT NULL,
+     Password         VARCHAR(45)       NOT NULL,
+    PRIMARY KEY (Username));
+CREATE TABLE USER_DETAILS
+    (Username         VARCHAR(45)       NOT NULL,
+     First_name       VARCHAR(45),
+     Birthdate        DATE,              
+     Sex              CHAR(1),           
+     Spayed_neutered  BIT,               
+     Weight           INT,               
      Breed            VARCHAR(45),
-     Zip_code         INT               NOT NULL,
+     Zip_code         INT,               
      Bio              VARCHAR(500),
      Age_min_pref     INT,
      Age_max_pref     INT,
@@ -16,10 +20,6 @@ CREATE TABLE USERS
      Breed_pref       VARCHAR(45),
      Dist_pref        INT,
      Spayed_neutered_pref CHAR(1),
-    PRIMARY KEY (Username));
-CREATE TABLE USER_LOGIN
-    (Username         VARCHAR(45)       NOT NULL,
-     Password         VARCHAR(45)       NOT NULL,
     PRIMARY KEY (Username),
     FOREIGN KEY (Username) REFERENCES USERS(Username)   ON DELETE CASCADE  ON UPDATE CASCADE);
 CREATE TABLE MATCHES
