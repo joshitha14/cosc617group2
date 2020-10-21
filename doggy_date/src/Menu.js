@@ -28,9 +28,7 @@ function Menu(){
                             <li>CONTACT US</li>
                     
 
-                            <Link to ="/login">
-                            <li className="signin">LOG IN </li>
-                            </Link>
+                            
                             
                             <Link to ="/signup">
                             <li className="signup">SIGN UP</li>

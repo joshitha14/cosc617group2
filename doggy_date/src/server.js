@@ -134,6 +134,6 @@ app.get('/matches', function (req, res) {
   });
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(3306, function () {
   console.log('Server is running..');
 });

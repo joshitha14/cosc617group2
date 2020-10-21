@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 *{
   margin: 0;
 }
@@ -25,6 +26,7 @@ header{
   font-size: 22px;
   text-decoration: none;
   color:brown;
+  
 
 }
 
@@ -56,7 +58,7 @@ align-items: center;
 .signup{
   background-color:white;
   border-radius: 5px;;
-
+  border: 2px solid brown;
 }
 .signin{
   border: 2px solid brown;
@@ -72,10 +74,11 @@ header h4{
 
 .mainheading{
   position:absolute;
-  top: 50%;
-  left: 50%;
+  top: 25%;
+  left: 40%;
   transform: translate(-50%, -50%);
   margin-top: 5%;
+  display: block;
 
 }
 
@@ -92,8 +95,9 @@ header h4{
 }
 
 .imagebanner img{
+width: 100%;
+margin-top: -25%;
 
-  width: 100%;
 }
 .logo img {
   height: 10vh;
@@ -130,6 +134,7 @@ header h4{
 .mainheading p{
   color:brown;
   font-size:28px;
+  position: relative;
   
 }
 
@@ -153,20 +158,55 @@ a:hover{
   color:black;
 }
 
-.loginform{
-  width:440px;
+.loginform {
+  width:400px;
   height: auto;
-  background-color:brown;
+  background-color:rgb(165, 42, 42);
   text-align: center;
   border-radius: 10px;
   font-family: 'Poppins', sans-serif;
   color:white;
-  margin-left: 30%;
+  margin-left: 70%;
+  position: absolute; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top:100px;
+  box-shadow: 2px 5px 15px black;
+  
 
-padding-top: 10px;
-padding-bottom: 20px;
   
 }
+
+/*############  Sign Up Form ################ */
+.signupform {
+  width:400px;
+  height: auto;
+  background-color:rgb(165, 42, 42);
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  color:white;
+  margin-left: 35%;
+  position: absolute; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top:10px;
+  box-shadow: 2px 5px 15px black;
+}
+
+.signupform input[type=text], input[type=password]
+{
+  border:none;
+  background: white;
+  outline: none;
+  border-radius: 20px;
+  height: 15px;
+  width: 200px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
 .loginform input[type=text], input[type=password], input[type=date], input[type=number]
 {
   border:none;
@@ -178,8 +218,6 @@ padding-bottom: 20px;
   padding: 10px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-
-
 }
 
 #custom-select
@@ -192,7 +230,19 @@ padding-bottom: 20px;
   padding: 10px;
 
 }
+.signupform input[type=submit]
+{
+ padding:10px 20px;
+  color: #fff;
+  border: 2px solid #fff;
+  
+  background:transparent;
 
+  font-size: 20px;
+
+  width: 200px;
+  margin-top: 30px;
+}
 
 .loginform input[type=submit]
 {
@@ -206,4 +256,163 @@ padding-bottom: 20px;
 
   width: 200px;
   margin-top: 30px;
+}
+
+
+.card{
+  width:590px;
+  height: auto;
+  background-color:white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color:black;
+  margin-left: 30%;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 2px 5px 15px grey;
+  margin-top: 20px;  
+}
+
+.cardprofilepic
+{
+ border-radius: 50%;
+ border:brown 3px solid;
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  float: left;
+}
+
+.profilecontent p{
+  display: inline;
+  font-weight: bold;
+  background-color:#f2f2f2;
+  border-radius: 20px;
+  padding:2px 4px 2px 4px;
+
+}
+
+.newsfeedpic
+{
+ border-radius: 10px;
+  height: 400px;
+  width: 500px;
+  object-fit: cover;
+  padding-top: 15px;
+}
+.like
+{
+  border: none;
+
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width: 200px;
+}
+
+
+.cardprofile{
+  width:100%;
+  height:100px;
+  background-color:brown;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color:black;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 2px 5px 15px grey;
+}
+
+.profilepic
+{
+ border-radius: 50%;
+ border:white 3px solid;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  position: relative; 
+}
+
+.imagereel{
+  width:100%;
+  height:auto;
+  background-color:brown;
+  padding: 20px 20px;
+  box-shadow: 2px 5px 15px grey;
+}
+.imagereelpics
+{
+  height: 200px;
+  width: auto;
+  border-radius: 5px;
+  border: 5px solid white;
+  cursor: pointer;
+  margin: 3px;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.topnav {
+  color:white;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 27px;
+  cursor: pointer;
+  
 }

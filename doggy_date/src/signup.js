@@ -8,20 +8,23 @@ function Signup (){
     return (
         <div>
             <Menu/>
-            <div className="loginform">
+            <div className="signupform">
                 <div className="logo">
                     <img src={logo} alt="Logo" />
                 </div>
                 <h1>Get Started</h1> <br />
-                <p>By clicking get Log in, you agree to our Terms . Learn how we process your data in our
-                Privacy Policy and Cookie Policy</p>
+                <p>By clicking get Sign Up, you agree to our Terms . Learn how we process your data in our
+                Privacy Policy and Cookie Policy.</p> <br/>
                 <form>
-                    <p>First Name</p>
-                    <input type="text" name="Fname"  />
-                    <p>Last Name</p>
-                    <input type="text" name="Lname"  /> <br />
+                    <p>Username</p>
+                    <input type="text" name="username"  />
+                    <p>Password</p>
+                    <input type="text" name="password"  /> <br />
+                    <p>Confirm Password</p>
+                    <input type="text" name="cpassword"  /> <br />
 
-                    <p>Date of Birth</p>
+                    
+                    {/* {<p>Date of Birth</p>
                     <input type="date" name="dob" /> <br />
 
                     <p>Sex</p>
@@ -30,7 +33,7 @@ function Signup (){
                        <option value="male">Male</option>
                        <option value="female">Female</option>
                        <option value="other">Other</option>
-                       </select>
+                       </select>}
                      
                     <p>Weight (In Pound)</p>
                     <input type="text" name="weight" /> <br />
@@ -98,11 +101,11 @@ function Signup (){
                        </select>
 
                     <p>Preffered Distance?</p>
-                    <input type="text" name="weight_max_pref" />   <br/>
+                    <input type="text" name="weight_max_pref" />   <br/> */}
                   
                     
 
-                    <input type="submit" name="" value="SIGN UP" />
+                    <input type="submit" name="" value="SIGN UP"/>
                 </form>
             </div>
 

@@ -1,14 +1,12 @@
 import React from "react";
-import Menu from './Menu';
+import {Link} from 'react-router-dom';
 import './App.css';
-
-
 
 function Login ()
 {
   return(
     <div>
-      <Menu/>
+     
       <div className="loginform">
       <h1>WELCOME, DOG LOVERS!</h1>
       <form>
@@ -20,7 +18,7 @@ function Login ()
 
       <input type="submit" value="LOG IN" />
     <p>Forgot Password?</p>
-    <p>Don't have an account?</p>
+    <p><Link to="/signup">Don't have an account?</Link></p>
       </form>
       </div>
     </div>
