@@ -5,7 +5,7 @@ CREATE TABLE USERS
 CREATE TABLE USER_DETAILS
     (Username         VARCHAR(45)       NOT NULL,
      First_name       VARCHAR(45),
-     Birthdate        DATE,              
+     Birthdate        DATE,            
      Sex              CHAR(1),           
      Spayed_neutered  BIT,               
      Weight           INT,               

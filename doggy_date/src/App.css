@@ -266,10 +266,11 @@ a:hover{
   text-align: center;
   font-family: 'Poppins', sans-serif;
   color:black;
-  margin-left: 30%;
+  margin: 20px 20px 20px 20px ;
   padding: 20px 20px 20px 20px;
   box-shadow: 2px 5px 15px grey;
   margin-top: 20px;  
+  float: left;
 }
 
 .cardprofilepic

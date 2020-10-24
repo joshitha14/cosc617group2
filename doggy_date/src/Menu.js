@@ -17,6 +17,10 @@ function Menu(){
                     <nav>
                         <ul className="menu">
                             
+                            <Link to ="/meet">
+                            <li className="meet">MEET</li>
+                            </Link>
+
                             <li>BLOG</li>
                           
 

@@ -5,10 +5,12 @@ var url = require('url');
 const { Console } = require('console');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var cors = require('cors')// Needed when app and db are both running on same hose (npm install cors --save)
+app.use(cors()) 
 
 //Get data from user table for one or all users. 
 app.get('/users', function (req, res) {
-   
+
   var con = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -24,7 +26,6 @@ app.get('/users', function (req, res) {
     if(qs.Username) {//send user data for specified user name
       con.query("SELECT * FROM users WHERE Username=?", [qs.Username], function (err, result, fields) {
         if (err) throw err;
-
         res.send(result);
       });
     }
@@ -38,8 +39,8 @@ app.get('/users', function (req, res) {
   });
 });
 
-//Get data from user_login table for one or all users. 
-app.get('/user_login', function (req, res) {
+//Get data from user_details table for one or all users. 
+app.get('/user_details', function (req, res) {
    
   var con = mysql.createConnection({
     host: "localhost",
@@ -54,14 +55,14 @@ app.get('/user_login', function (req, res) {
     if (err) throw err;
  
     if(qs.Username) {//send user data for specified user name
-      con.query("SELECT * FROM user_login WHERE Username=?", [qs.Username], function (err, result, fields) {
+      con.query("SELECT * FROM user_details WHERE Username=?", [qs.Username], function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
       });
     }
     else { //Send user data for all users
-      con.query("SELECT * FROM user_login", function (err, result, fields) {
+      con.query("SELECT * FROM user_details", function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
@@ -134,6 +135,6 @@ app.get('/matches', function (req, res) {
   });
 });
 
-var server = app.listen(3306, function () {
+var server = app.listen(3001, function () {
   console.log('Server is running..');
 });
