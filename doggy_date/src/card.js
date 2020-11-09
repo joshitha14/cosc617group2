@@ -3,12 +3,13 @@ import profilepic from "./images/Dog1/pp.jpeg";
 import upload1 from "./images/Dog1/upload1.jpeg";
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
-
-
-
 import './App.css';
 
+
+
+
 function Card() {
+    
     return (
         <div>
             <div className="card">
