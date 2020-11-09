@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import logo from "./images/logo.png";
-import {Link}from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 function Menu(){
     return(

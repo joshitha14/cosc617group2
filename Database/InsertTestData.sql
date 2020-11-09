@@ -15,9 +15,11 @@ INSERT INTO PHOTOS
 VALUES ('Remi_01', 'remi-pic1'),
 ('Remi_01', 'remi-pic2'),
 ('Remi_01', 'remi-pic3'),
+('Remi_01', 'remi-pic4'),
 ('Gus_01', 'gus-pic1'),
 ('Gus_01', 'gus-pic2'),
 ('Gus_01', 'gus-pic3'),
+('Gus_01', 'gus-pic4'),
 ('Kona_01', 'kona-pic1'),
 ('Kona_01', 'kona-pic2'),
 ('Kona_01', 'kona-pic3');
@@ -26,4 +28,6 @@ INSERT INTO MATCHES
 VALUES('Remi_01', 'Gus_01', 1),
 ('Kona_01', 'Gus_01', 1),
 ('Remi_01', 'Kona_01', 0);
+
+
 
