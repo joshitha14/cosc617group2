@@ -1,9 +1,18 @@
+//Note: there is a lot code on this page that is the same as the meet.js
+//file but not all of it is and I haven't mastered good code reuse strategies
+//in readt yet.
 import React, {useEffect, useState} from "react";
-import './App.css';
+import './matches.css';
+import io from 'socket.io-client'
+import Chat from './chat';
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
 
-function Meet() { 
+
+const socket = io.connect('http://localhost:3001')
+
+function Matches() { 
+
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
   useEffect (() => {
@@ -11,6 +20,8 @@ function Meet() {
   }, []);
 
   var [users, setUsers] = useState([]);
+
+  var [currentMatch, setCurrentMatch] = useState({});
 
   //Fetch user details and photo ID#s. Store in separate object for each user:
   const fetchUserDetails = async () => {
@@ -28,6 +39,7 @@ function Meet() {
       }
     }
     setUsers(userDetails);
+    setCurrentMatch(userDetails[0]);
   }
 
   // Generate a link to the users primary (first) photo:
@@ -73,25 +85,30 @@ function Meet() {
 
   return (
     <div>
-      {users.map(user => (
-        <div className="card" key={user.Username}>
-          <img className="newsfeedpic" id={`main-pic-${user.Username}`} src={generateLinkToMainPhoto(user.Username)} 
-          alt="Profile" onClick={() => showNextImage(user.Username)}/>
-          <h1 id="firstName">{user.First_name}</h1>
-          <div className="profilecontent">
-            <p>Age:</p><span>{getAge(user.Birthdate)}</span>
-            <p>Sex:</p><span>{user.Sex} </span>
-            <p>Weight(lbs):</p><span>{user.Weight}</span>
-            <p>Breed:</p>  <span>{user.Breed}</span><br />
-            <div id="bio">{user.Bio}</div>
-            <div className="reactions">
-              <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}/>
-              <img src={cross} height="48px"/>
-            </div>
+      <div className="yourMatches">
+      <h1>Your Matches</h1>
+        <div className="yourMatchesInnerContainer">
+          {users.map((user,index) => (<img key={user.Username} className="matchesPic" src={generateLinkToMainPhoto(user.Username)} alt="Profile" onClick={() => setCurrentMatch(users[index])} /> ))}
+        </div>
+      </div>
+      <Chat />
+      <div className="card">
+        <img className="newsfeedpic" id={`main-pic-${currentMatch.Username}`} src={generateLinkToMainPhoto(currentMatch.Username)} 
+        alt="Profile" onClick={() => showNextImage(currentMatch.Username)} />
+        <h1 id="firstName">{currentMatch.First_name}</h1>
+        <div className="profilecontent">
+          <p>Age:</p><span>{getAge(currentMatch.Birthdate)}</span>
+          <p>Sex:</p><span>{currentMatch.Sex} </span>
+          <p>Weight(lbs):</p><span>{currentMatch.Weight}</span>
+          <p>Breed:</p>  <span>{currentMatch.Breed}</span><br />
+          <div id="bio">{currentMatch.Bio}</div>
+          <div className="reactions">
+            <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}/>
+            <img src={cross} height="48px"/>
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 }
-export default Meet;
+export default Matches;

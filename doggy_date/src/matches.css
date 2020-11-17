@@ -1,0 +1,35 @@
+.yourMatches {
+  width:430px;
+  height: 580px;
+  background-color:white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color:black;
+  margin: 20px 20px 20px 20px ;
+  box-shadow: 2px 5px 15px grey;
+  margin-top: 20px;  
+  float: left;
+  border-radius: 20px;
+  position: relative;
+  font-size: 12px;
+}
+
+.yourMatchesInnerContainer {
+  overflow-y: scroll;
+  width: 400px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.matchesPic {
+  border-radius: 50%;
+  border:brown 3px solid;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  float: left;
+  margin: 10px;
+  float: left;
+}

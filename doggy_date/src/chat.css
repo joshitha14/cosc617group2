@@ -1,0 +1,70 @@
+.chatWindow {
+  width:430px;
+  height: 580px;
+  background-color:white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color:black;
+  margin: 20px 20px 20px 20px ;
+  box-shadow: 2px 5px 15px grey;
+  margin-top: 20px;  
+  float: left;
+  border-radius: 20px;
+  position: relative;
+  font-size: 12px;
+}
+
+#name-field {
+  position: absolute;
+  bottom: 63px;
+  right: 0px;
+  width: 422px;
+  height: 30px;
+}
+
+#message-field {
+  position: absolute;
+  bottom: 28px;
+  right: 0px;
+  width: 422px;
+  height: 30px;
+}
+
+#chatButton {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 430px;
+  height: 30px;
+  border-radius: 0px 0px 20px 20px;
+  background-color: rgb(43, 154, 223);
+  outline: none;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.render-chat {
+  overflow-y: scroll;
+  width: 400px;
+  height: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  /* border: black solid 2px; */
+}
+
+#chatNameAndMessage {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#chatName {
+  color: white;
+  background-color: rgb(43, 154, 223);
+  padding: 3px 7px 3px 7px;
+  border-radius: 15px;
+}
+
+
