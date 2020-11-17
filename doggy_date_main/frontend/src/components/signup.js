@@ -30,7 +30,7 @@ function Signup (){
       })
       .then(data => {
         setSignupMsg(data.message);
-        if(data.status >= 200)
+        if(data.status >= 200 && data.status <= 299)
         {
           history.push('/');
         }
@@ -65,8 +65,8 @@ function Signup (){
                     onChange={(e) => setUser({ ...user, passwordConfirm: e.target.value })}
                     required /> 
                     <br/>
-                    <input type="submit" value="SIGN UP" />
                     <p>{signupMsg}</p>
+                    <input type="submit" value="SIGN UP" />
                 </form>
             </div>
 
