@@ -69,7 +69,6 @@ function Signup (){
                     <input type="submit" value="SIGN UP" />
                 </form>
             </div>
-
         </div>
     );
 }
