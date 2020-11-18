@@ -12,6 +12,8 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 const AppRoutes = () => {
   const {isAuthenticated} = useContext(AuthContext);
   return (
+    <div>
+      <Menu />
       <Switch>
           <Route path="/" exact 
             render={() => !isAuthenticated() ? (<Home />) : (<Redirect to="/meet" />)}>
@@ -24,6 +26,7 @@ const AppRoutes = () => {
           </Route>
               <Route path="/matches" component={Matches} />
       </Switch>
+    </div>
   );
 }
 
