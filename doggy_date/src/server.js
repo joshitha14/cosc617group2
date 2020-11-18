@@ -8,13 +8,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cors = require('cors')// Needed when app and db are both running on same host (npm install cors --save)
 app.use(cors()) 
 
-//Used for login:
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);//Used to create a session store in the DB I think.
-//If you don't add a store to the DB then I think the session will save in the browser. I did not use the DB.
-app.use(express.json());
-app.use(express.urlencoded({extended:false})); // parse url encoded bodies (i.e html forms)
-app.use(express.json()); // parse JSON bodies (req data are received as JSON objects)
+
 
 //****************************************************************************
 //Socket.io Chat
@@ -41,50 +35,7 @@ io.on('connection', socket => {
 //****************************************************************************
 
 
-app.use(session({
-     name: 'sid',
-     resave: false,
-     saveUninitialized: false,
-     secret: 'secretkey102020',
-     cookie: {
-          maxAge: 1000 * 60 * 60 * 2,
-          sameSite: true,
-          secure: false
-          }
-     }),
-);
 
-
-app.post('/login', function(req,res){
-
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password123",
-    database: "doggydate"
-  });
-
-  try {
-       const {userName, password} = req.body;
-       if(!userName || !password){
-            return res.status(400).render('login', {message:'Please provide an email and password'});
-       }
-       con.query('SELECT * FROM USERS WHERE Username = ? AND Password = ?', [userName, password], function(err, results) {
-
-            if (results.length>0) {
-                 req.session.curntUser = results[0].Username; 
-                 res.status(200).redirect("/home");          
-            }
-            else {
-                 return res.status(401).render('login', {message:'Email or Password is incorrect'});
-            }
-            
-       });
-  }
-  catch(error) {
-       console.log(error.message);
-  }
-});
 
 //****************************************************************************
 //Get Requests
