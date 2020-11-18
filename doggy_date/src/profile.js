@@ -8,9 +8,11 @@ import './App.css';
 
 
 
+
 function Profile() {
     const {logout} = useContext(AuthContext);
     return (
+        
         <div>
 
             <div className="cardprofile">
@@ -51,7 +53,7 @@ function Profile() {
                 <input type="text" name="weight" /> 
                 
                     Breed
-                <select id="custom-select" name="breed">
+                    <select id="custom-select" name="breed">
                     <option value="selectnone">Select</option>
                     <option value="germanshepherd">German Shepherd</option>
                     <option value="bulldog">Bulldog</option>
