@@ -301,6 +301,7 @@ a:hover{
   width: 500px;
   object-fit: cover;
   padding-top: 15px;
+  cursor: pointer;
 }
 .like
 {

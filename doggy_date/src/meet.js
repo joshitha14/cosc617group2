@@ -4,6 +4,7 @@ import Menu from './Menu';
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
 
+
 function Meet() { 
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
@@ -76,7 +77,7 @@ function Meet() {
       <Menu/>
       {users.map(user => (
         <div className="card" key={user.Username}>
-            <img className="cardprofilepic" src={generateLinkToMainPhoto(user.Username)} alt="Profile" />
+           <img className="cardprofilepic" src={generateLinkToMainPhoto(user.Username)} alt="Profile" />
             <div className="profilecontent">
                 <h1>{user.First_name}</h1>
                 <p>Age: </p><span>{getAge(user.Birthdate)}</span>
@@ -85,6 +86,7 @@ function Meet() {
                 <p>Breed: </p>  <span>{user.Breed}</span>
                 <img className="newsfeedpic" id={`main-pic-${user.Username}`} src={generateLinkToMainPhoto(user.Username)} 
                 alt="Profile" onClick={() => showNextImage(user.Username)}/>
+              
                 <div className="reactions">
                   <img src={heart} height="64px" style={{padding:"0px 100px 0 0"}}/>
                   <img src={cross} height="72px"/>
