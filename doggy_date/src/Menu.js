@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import './App.css';
+import {AuthContext} from "./AuthContext";
 import logo from "./images/logo.png";
 import {Link} from 'react-router-dom'
 
 function Menu(){
+    const {authState} = useContext(AuthContext);
     return(
         <div>
             
@@ -17,7 +19,7 @@ function Menu(){
                     <nav>
                         <ul className="menu">
                             
-                            <Link to ="/meet">
+                            <Link to ={authState.isAuth ? '/meet' : '/login'}>
                             <li className="meet">MEET</li>
                             </Link>
 
@@ -38,7 +40,7 @@ function Menu(){
 
                             
                             
-                            <Link to ="/signup">
+                            <Link to ={authState.isAuth ? '/home' : '/signup'}>
                             <li className="signup">SIGN UP</li>
                             </Link>
                             
