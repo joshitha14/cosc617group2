@@ -1,0 +1,64 @@
+/* 
+I copied these styles over from the App.css file but did not finish switching 
+over to this file. Before switching, I will need to change all the classNames and
+ids, otherwise the meet.css and app.css files will conflict where the classNames
+and ids are the same. The matches.js file also uses the styles in the App.css file.
+Some of these can be deleted from App.css but some are used by other components.  
+Ian.
+
+
+.card{
+  width:430px;
+  height: 580px;
+  background-color:white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color:black;
+  margin: 20px 20px 20px 20px ;
+  box-shadow: 2px 5px 15px grey;
+  margin-top: 20px;  
+  float: left;
+  border-radius: 20px;
+  position: relative;
+  font-size: 12px;
+}
+
+.newsfeedpic {
+  height: 350px;
+  width: 430px;
+  object-fit: cover;
+  border-radius: 20px 20px 0px 0px;
+}
+
+#firstName {
+  position: absolute;
+  bottom: 225px;
+  left: 16px;
+  color: white;
+  Font-size: 36px;
+  letter-spacing: 3px;
+}
+
+.profilecontent p{
+  display: inline;
+  font-weight: bold;
+  background-color:#f2f2f2;
+  border-radius: 20px;
+  padding:2px 4px 2px 4px;
+}
+
+.profilecontent span {
+  margin-right:5px;
+}
+
+#bio {
+  width: 400px;
+  height: 110px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 10px 5px 5px 5px;
+  text-align: left;
+  font-size: 16px;
+  border-top: 2px rgb(161, 161, 161) solid;
+} */

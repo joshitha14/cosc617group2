@@ -2,12 +2,19 @@
   "name": "doggy_date",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "http": "0.0.1-security",
+    "mobx": "^6.0.3",
+    "mobx-react": "^7.0.4",
     "mysql": "^2.18.1",
     "nodemailer": "^6.4.14",
     "react": "^16.13.1",
@@ -15,7 +22,8 @@
     "react-google-login": "^5.1.21",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-select": "^3.1.0"
+    "socket.io": "^3.0.1",
+    "socket.io-client": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

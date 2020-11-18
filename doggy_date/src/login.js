@@ -2,12 +2,9 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import './App.css';
 
-function Login ()
-{
+function Login () {
   return(
-    <div>
-     
-      <div className="loginform">
+    <div className="loginform">
       <h1>WELCOME, DOG LOVERS!</h1>
       <form action="newsfeed.js" method="get">
         <p>User Name</p>
@@ -16,11 +13,10 @@ function Login ()
         <p>Password</p>
         <input type="password" name="password" required /> <br/>
 
-     <input type="submit" value="LOG IN" />
-    <p>Forgot Password?</p>
-    <p><Link to="/signup">Don't have an account?</Link></p>
+        <input type="submit" value="LOG IN" />
       </form>
-      </div>
+      <p>Forgot Password?</p>
+      <p><Link to="/signup">Don't have an account?</Link></p>
     </div>
   );
 }

@@ -21,6 +21,10 @@ function Menu(){
                             <li className="meet">MEET</li>
                             </Link>
 
+                            <Link to ="/matches">
+                            <li className="matches">MATCHES</li>
+                            </Link>
+
                             <li>BLOG</li>
                           
 

@@ -5,8 +5,42 @@ var url = require('url');
 const { Console } = require('console');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-var cors = require('cors')// Needed when app and db are both running on same hose (npm install cors --save)
+var cors = require('cors')// Needed when app and db are both running on same host (npm install cors --save)
 app.use(cors()) 
+
+
+
+//****************************************************************************
+//Socket.io Chat
+//****************************************************************************
+const http = require('http').createServer(app)
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    // allowedHeaders: [],
+    credentials: true
+  }
+});
+
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
+  })
+})
+
+
+//****************************************************************************
+//Log in
+//****************************************************************************
+
+
+
+
+//****************************************************************************
+//Get Requests
+//****************************************************************************
+
 
 //Get data from user table for one or all users. 
 app.get('/users', function (req, res) {
@@ -135,6 +169,10 @@ app.get('/matches', function (req, res) {
   });
 });
 
-var server = app.listen(3001, function () {
-  console.log('Server is running..');
-});
+// var server = app.listen(3001, function () {
+//   console.log('Server is running..');
+// });
+
+http.listen(3001, function() {
+  console.log('listening on port 3001')
+})

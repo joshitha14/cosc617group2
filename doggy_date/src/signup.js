@@ -1,13 +1,11 @@
 import React from "react";
 import './App.css';
 import logo from "./images/logo_white.png";
-import Menu from './Menu';
 
 
 function Signup (){
     return (
         <div>
-            <Menu/>
             <div className="signupform">
                 <div className="logo">
                     <img src={logo} alt="Logo" />
