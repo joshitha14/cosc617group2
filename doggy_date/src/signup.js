@@ -3,7 +3,6 @@ import {useHistory} from 'react-router-dom';
 import './App.css';
 import logo from "./images/logo_white.png";
 
-
 function Signup (){
     const history = useHistory();
     const [user, setUser] = useState({userName:'', password:'', passwordConfirm:''});
@@ -34,7 +33,20 @@ function Signup (){
           history.push('/');
         }
       })
+
+      // fetch('http://localhost:3001/user_details', requestOptions)
+      // .then(res => {
+      //   return res.json()
+      // })
+      // .then(data => {
+      //   if(data.status >= 200 && data.status <= 299)
+      //     console.log("Suceess");
+      //   else 
+      //     console.log("Failure");
+      // })
+
     }
+    
     return (
         <div>
             <div className="signupform">

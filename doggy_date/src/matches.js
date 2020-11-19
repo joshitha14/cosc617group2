@@ -3,13 +3,10 @@
 //in readt yet.
 import React, {useEffect, useState} from "react";
 import './matches.css';
-import io from 'socket.io-client'
 import Chat from './chat';
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
 
-
-const socket = io.connect('http://localhost:3001')
 
 function Matches() { 
 

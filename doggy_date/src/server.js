@@ -49,10 +49,8 @@ app.use(session({
 //****************************************************************************
 
 
-
 //****************************************************************************
 //Socket.io Chat
-//****************************************************************************
 const http = require('http').createServer(app)
 const io = require("socket.io")(http, {
   cors: {
@@ -68,6 +66,7 @@ io.on('connection', socket => {
     io.emit('message', { name, message })
   })
 })
+//****************************************************************************
 
 
 //****************************************************************************
@@ -96,8 +95,11 @@ app.post('/register', function(req,res){
         else
         {
           con.query("INSERT INTO users SET ?",{Username: userName, Password:password} , function (err, result) {
-          if (err) throw err.message;
-          res.status(200).json({status:200, message:'Registration successful'});
+            if (err) throw err.message;
+            con.query("INSERT INTO user_details SET ?",{Username: userName}, function (err, result) {
+              if (err) throw err.message;
+              res.status(200).json({status:200, message:'Registration successful'});
+            });      
         });
         }
      });
@@ -106,7 +108,40 @@ app.post('/register', function(req,res){
          console.log(error.message);
     }
 });
+
+// app.post('/user_details', function(req,res){
+//   const con = mysql.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "password123",
+//     database: "doggydate"
+//   });
+
+//   try {
+//       const userName = req.body.userName;
+//       if(!userName){
+//         res.status(400).send({message:'No username was provided.'});
+//         }
+//       con.query("SELECT * FROM user_details WHERE Username =?",[userName], function (err, result) {
+//         if (err) throw err.message;
+//         else if (result.length > 0){
+//           res.status(403).json({message:'There is already a user_details record for ' + userName});
+//         }
+//         else
+//         {
+//           con.query("INSERT INTO user_details SET ?",{Username: userName} , function (err, result) {
+//           if (err) throw err.message;
+//           res.status(200).json({status:200, message:'Row created in user_details for ' + userName});
+//         });
+//         }
+//      });
+//     }
+//     catch(error) {
+//          console.log(error.message);
+//     }
+// });
 //****************************************************************************
+
 
 //****************************************************************************
 //Log in
@@ -175,8 +210,6 @@ app.post('/logout', function(req,res){
 
 //****************************************************************************
 //Get Requests
-//****************************************************************************
-
 
 //Get data from user table for one or all users. 
 app.get('/users', function (req, res) {
@@ -305,11 +338,9 @@ app.get('/matches', function (req, res) {
     }
   });
 });
+//****************************************************************************
 
-// var server = app.listen(3001, function () {
-//   console.log('Server is running..');
-// });
-
+//Socket.io requires the connection to be an http connection. 
 http.listen(3001, function() {
   console.log('listening on port 3001')
 })
