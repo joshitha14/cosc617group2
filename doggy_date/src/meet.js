@@ -138,8 +138,10 @@ function Meet() {
     <div>
       {users.map(user => (
         <div className="card" key={user.Username}>
-          <img className="newsfeedpic" id={`main-pic-${user.Username}`} src={generateLinkToMainPhoto(user.Username)} 
-          alt="Profile" onClick={() => showNextImage(user.Username)}/>
+          <div className="newsFeedpicContainer">
+            <img className="newsfeedpic" id={`main-pic-${user.Username}`} src={generateLinkToMainPhoto(user.Username)} 
+            alt="Profile" onClick={() => showNextImage(user.Username)}/>
+          </div>
           <h1 id="firstName">{user.First_name}</h1>
           <div className="profilecontent">
             <p>Age:</p><span>{getAge(user.Birthdate)}</span>

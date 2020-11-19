@@ -31,7 +31,7 @@ function Chat() {
     return chat.map(({ name, message }, index) => (
       <div key={index}>
         <h3 id="chatNameAndMessage">
-          <span id="chatName">{name}</span> <span>{message}</span><br />
+          <span id="chatName">{name}</span><br /> <span id="chatMessage">{message}</span><br />
         </h3>
       </div>
     ))

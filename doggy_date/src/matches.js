@@ -135,8 +135,10 @@ function Matches() {
       </div>
       <Chat />
       <div className="card">
-        <img className="newsfeedpic" id={`main-pic-${currentMatch.Username}`} src={generateLinkToMainPhoto(currentMatch.Username)} 
-        alt="Profile" onClick={() => showNextImage(currentMatch.Username)} />
+        <div className="newsFeedpicContainer">
+          <img className="newsfeedpic" id={`main-pic-${currentMatch.Username}`} src={generateLinkToMainPhoto(currentMatch.Username)} 
+          alt="Profile" onClick={() => showNextImage(currentMatch.Username)} />
+        </div>
         <h1 id="firstName">{currentMatch.First_name}</h1>
         <div className="profilecontent">
           <p>Age:</p><span>{getAge(currentMatch.Birthdate)}</span>
