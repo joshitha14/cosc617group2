@@ -1,6 +1,3 @@
-//Note: there is a lot code on this page that is the same as the meet.js
-//file but not all of it is and I haven't mastered good code reuse strategies
-//in readt yet.
 import React, {useEffect, useState} from "react";
 import './matches.css';
 import Chat from './chat';
@@ -22,7 +19,8 @@ function Matches() {
 
   //Fetch user details and photo ID#s. Store in separate object for each user:
   const fetchUserDetails = async () => {
-    const data = await fetch('http://localhost:3001/user_details/');
+    const data = await fetch('http://localhost:3001/getMatchDetails?Username='+ 
+      (JSON.parse(localStorage.getItem('userInfo'))).userName);
     const userDetails = await data.json();
     //For each user, fetch the list of image filenames and store the list as an array
     //in the object for that user.
@@ -80,6 +78,53 @@ function Matches() {
       return Math.floor(ageMiliseconds / milisecondsPerMonth).toString() + "m";
   }
 
+  function destroyMatch(likee) {
+    const liker = (JSON.parse(localStorage.getItem('userInfo'))).userName;
+    console.log(likee);//for testing only
+    console.log(liker);//for testing only
+
+    const match = {
+      Liker: liker,
+      Likee: likee
+    }
+
+    const requestOptions = {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(match)
+  }
+  
+  fetch('http://localhost:3001/destroyMatch', requestOptions)
+    .then(res => {return res.json()})
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+    //Remove the match from the current state and remount the component
+    //NOTE: the match is removed but for the compoentns doesn't re-mount
+    //when setUsers is called. Couldn't get forceUpdate() to work either.
+    //Might have to use .bind(this) somewhere but not ure where. 
+    //Need to look into this further. 
+    var temp = users;
+    for(var i = 0; i < temp.length; i++) {
+      if(temp[i].Username = likee)
+        console.log(temp[i].Username);//for testing only
+        temp.splice(i,1);
+        break;
+    }
+    setUsers(temp);
+    console.log(users);//for testing only
+  }
+  
+  if(users.length > 0){
   return (
     <div>
       <div className="yourMatches">
@@ -100,12 +145,25 @@ function Matches() {
           <p>Breed:</p>  <span>{currentMatch.Breed}</span><br />
           <div id="bio">{currentMatch.Bio}</div>
           <div className="reactions">
-            <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}/>
-            <img src={cross} height="48px"/>
+            <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}} />
+            <img src={cross} height="48px" onClick={() => destroyMatch(currentMatch.Username)}/>
           </div>
         </div>
       </div>
     </div>
   );
+  }
+  else {
+    return(
+    <div>
+    <div className="yourMatches">
+    <h1>Your Matches</h1>
+      <div className="yourMatchesInnerContainer">
+      </div>
+    </div>
+    <Chat />
+    </div>
+    );
+  }
 }
 export default Matches;

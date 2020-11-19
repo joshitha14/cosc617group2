@@ -25,7 +25,7 @@ CREATE TABLE USER_DETAILS
 CREATE TABLE MATCHES
     (Liker            VARCHAR(45)       NOT NULL,
      Likee            VARCHAR(45)       NOT NULL,
-     Reciprocated     BIT               NOT NULL,
+     Reciprocated     INT               NOT NULL,
     PRIMARY KEY (Liker, Likee),
     FOREIGN KEY (Liker) REFERENCES USERS (Username)     ON DELETE CASCADE    ON UPDATE CASCADE,
     FOREIGN KEY (Likee) REFERENCES USERS (Username)     ON DELETE NO ACTION    ON UPDATE NO ACTION);

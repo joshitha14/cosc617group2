@@ -175,6 +175,121 @@ app.post('/logout', function(req,res){
 });
 //****************************************************************************
 
+//****************************************************************************
+//Create match
+app.post('/matches', function(req,res){
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+
+  try {
+      const liker = req.body.Liker;
+      const likee = req.body.Likee;
+      con.query("SELECT * FROM matches WHERE (Liker=? and Likee=?) or (Liker=? and Likee=?)",
+      [liker, likee, likee, liker], function (err, result) {
+        if (err) throw err.message;
+        //If there is no existing record, create a new record. 
+        else if (result.length <= 0){
+          con.query("INSERT INTO matches SET ?",{Liker: liker, Likee: likee, Reciprocated: 0}, function (err, result) {
+            if (err) throw err.message;
+            res.status(200).json({status:200, message:'Potential match created.'});
+          });
+
+        }
+        //If the user who clicked the like button is the likee in the existing record (meaning the other user
+        //liked them first), and the reciprocated bit is currently 0, set the "Reciprocated" bit to 1 and a match is made.
+        else if (liker === result[0].Likee && !result[0].Reciprocated) {
+          console.log(result[0].Reciprocated);//for testing only
+          con.query("UPDATE matches SET Reciprocated=1 WHERE Liker=? and Likee=?",[result[0].Liker, result[0].Likee], function (err, result) {
+            if (err) throw err.message;
+            res.status(200).json({status:200, message:'Potential match created.'});
+          });
+        }
+        //If the reciprocated bit is set to 1, meaning that a match currently exists, and either user taps
+        //the like button, nothing will happen. 
+        else {
+          console.log(result[0].Reciprocated);//for testing only
+          res.status(200).json({status:200, message:'Match already exists. No action taken.'});
+          // con.query("UPDATE matches SET Reciprocated=0 WHERE Liker=? and Likee=?",[result[0].Liker, result[0].Likee], function (err, result) {
+          //   if (err) throw err.message;
+          //   res.status(200).json({status:200, message:'Match already exists. No action taken.'});
+          // });
+        }
+     });
+    }
+    catch(error) {
+         console.log(error.message);
+    }
+});
+
+//Destroy existing match:
+app.post('/destroyMatch', function(req,res){
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+
+  try {
+      const liker = req.body.Liker;
+      const likee = req.body.Likee;
+      con.query("SELECT * FROM matches WHERE (Liker=? and Likee=?) or (Liker=? and Likee=?)",
+      [liker, likee, likee, liker], function (err, result) {
+        if (err) throw err.message;
+        //If there is no existing record, do nothing. 
+        else if (result.length <= 0){
+            res.status(404).json({status:404, message:'No match exists.'})
+        }
+        //If there is an existing record, delete it.
+        else {
+          con.query("DELETE FROM matches WHERE (Liker=? and Likee=?) or (Liker=? and Likee=?)",[liker, likee, likee, liker], function (err, result) {
+            if (err) throw err.message;
+            res.status(200).json({status:200, message:'Match destroyed.'});
+          });
+        }
+     });
+    }
+    catch(error) {
+         console.log(error.message);
+    }
+});
+
+//Get data from user_details table matches only
+app.get('/getMatchDetails', function (req, res) {
+   
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+  
+  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var query =   "SELECT * " +
+                "FROM user_details AS U " +
+                "WHERE U.Username IN ((SELECT Likee AS Username " +  
+                                      "FROM matches " +
+                                      "WHERE Liker=? AND Reciprocated=1) " +
+                                      "UNION " +
+                                      "(SELECT Liker AS Username " +
+                                      "FROM matches " +
+                                      "WHERE Likee=? AND Reciprocated=1))"
+
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log(qs.Username);
+    console.log(query);
+    con.query(query, [qs.Username, qs.Username], function (err, result, fields) {
+      if (err) throw err;
+      res.send(result);
+    });
+  });
+});
+//****************************************************************************
 
 
 //****************************************************************************

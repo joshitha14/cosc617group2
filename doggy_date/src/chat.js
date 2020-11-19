@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import './chat.css';
 import io from 'socket.io-client'
-
+//*****TEMP MARKER
 const socket = io.connect('http://localhost:3001')
 
 function Chat() { 
 
-  const [state, setState] = useState({ message: '', name: '' })
+  const [state, setState] = useState({ message: '', name: (JSON.parse(localStorage.getItem('userInfo'))).userName })
   const [chat, setChat] = useState([])
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function Chat() {
         <div className="chatWindow">
           <h1>Chat</h1>
           <form onSubmit={onMessageSubmit} className="form">
-            <div>
+            {/* <div>
               <input type='text'
                 name="name"
                 onChange={e => onTextChange(e)}
@@ -50,7 +50,7 @@ function Chat() {
                 id="name-field"
                 placeholder="Name"
               />
-            </div>
+            </div> */}
             <div>
               <input type='text'
                 name="message"

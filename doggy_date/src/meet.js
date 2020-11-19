@@ -72,6 +72,68 @@ function Meet() {
       return Math.floor(ageMiliseconds / milisecondsPerMonth).toString() + "m";
   }
 
+  function createMatch(likee) {
+    const liker = (JSON.parse(localStorage.getItem('userInfo'))).userName;
+    console.log(likee);//for testing only
+    console.log(liker);//for testing only
+
+    const match = {
+      Liker: liker,
+      Likee: likee
+    }
+
+    const requestOptions = {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(match)
+  }
+  
+  fetch('http://localhost:3001/matches', requestOptions)
+    .then(res => {return res.json()})
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  function destroyMatch(likee) {
+    const liker = (JSON.parse(localStorage.getItem('userInfo'))).userName;
+    console.log(likee);//for testing only
+    console.log(liker);//for testing only
+
+    const match = {
+      Liker: liker,
+      Likee: likee
+    }
+
+    const requestOptions = {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(match)
+  }
+  
+  fetch('http://localhost:3001/destroyMatch', requestOptions)
+    .then(res => {return res.json()})
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
   return (
     <div>
       {users.map(user => (
@@ -86,8 +148,10 @@ function Meet() {
             <p>Breed:</p>  <span>{user.Breed}</span><br />
             <div id="bio">{user.Bio}</div>
             <div className="reactions">
-              <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}/>
-              <img src={cross} height="48px"/>
+              <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}
+                onClick={() => createMatch(user.Username)}/>
+              <img src={cross} height="48px"
+                onClick={() => destroyMatch(user.Username)}/>
             </div>
           </div>
         </div>
