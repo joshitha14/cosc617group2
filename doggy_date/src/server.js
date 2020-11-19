@@ -109,37 +109,6 @@ app.post('/register', function(req,res){
     }
 });
 
-// app.post('/user_details', function(req,res){
-//   const con = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "password123",
-//     database: "doggydate"
-//   });
-
-//   try {
-//       const userName = req.body.userName;
-//       if(!userName){
-//         res.status(400).send({message:'No username was provided.'});
-//         }
-//       con.query("SELECT * FROM user_details WHERE Username =?",[userName], function (err, result) {
-//         if (err) throw err.message;
-//         else if (result.length > 0){
-//           res.status(403).json({message:'There is already a user_details record for ' + userName});
-//         }
-//         else
-//         {
-//           con.query("INSERT INTO user_details SET ?",{Username: userName} , function (err, result) {
-//           if (err) throw err.message;
-//           res.status(200).json({status:200, message:'Row created in user_details for ' + userName});
-//         });
-//         }
-//      });
-//     }
-//     catch(error) {
-//          console.log(error.message);
-//     }
-// });
 //****************************************************************************
 
 

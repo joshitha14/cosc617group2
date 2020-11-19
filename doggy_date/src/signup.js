@@ -33,18 +33,6 @@ function Signup (){
           history.push('/');
         }
       })
-
-      // fetch('http://localhost:3001/user_details', requestOptions)
-      // .then(res => {
-      //   return res.json()
-      // })
-      // .then(data => {
-      //   if(data.status >= 200 && data.status <= 299)
-      //     console.log("Suceess");
-      //   else 
-      //     console.log("Failure");
-      // })
-
     }
     
     return (
