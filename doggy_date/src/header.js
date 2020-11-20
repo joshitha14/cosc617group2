@@ -12,9 +12,9 @@ function Header() {
                     <div className="mainheading">
                         <h1>THE WORLD'S FIRST DATING WEBSITE FOR YOUR DOG </h1>
                         <p> <b>Start finding a friend for your dog. Or a partner?</b> </p>
-                        <div className="cta">
+                        {/* <div className="cta">
                             <button className="learnmore"> Learn More </button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="imagebanner">
                         <img src={header} alt="bannerimage" />

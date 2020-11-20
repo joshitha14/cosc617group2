@@ -372,9 +372,9 @@ app.get('/photos', function (req, res) {
 
   con.connect(function(err) {
     if (err) throw err;
- 
+    console.log(qs.Username);
     if(qs.Username) {//send user data for specified user name
-      con.query("SELECT * FROM photos WHERE Username=?", [qs.Username], function (err, result, fields) {
+      con.query("SELECT * FROM photos WHERE Username=? ORDER BY PhotoID ASC", [qs.Username], function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
@@ -389,6 +389,7 @@ app.get('/photos', function (req, res) {
     }
   });
 });
+
 
 //Get data from matches table for one or all users. 
 app.get('/matches', function (req, res) {

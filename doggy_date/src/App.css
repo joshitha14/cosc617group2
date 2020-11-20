@@ -28,6 +28,18 @@ header{
   color:brown;
 }
 
+.menuPic {
+  border-radius: 50%;
+  /* border:brown 2px solid; */
+  height: 55px;
+  width: 55px;
+  object-fit: cover;
+  margin-left: 20px;
+  /* float: left; */
+  /* margin: 10px; */
+  /* float: left; */
+}
+
 nav{
   flex:1;
 
@@ -65,6 +77,19 @@ align-items: center;
 .signup a{
   color:white;
 }
+
+.logout {
+  background-color:white;
+  font-family: 'Poppins', sans-serif;
+  padding: 5px 5px 5px 5px;
+  width: 100px;
+ border: 2px solid brown;
+}
+
+.logout a{
+  color:white;
+}
+
 header h4{
   
   font-size: 15px;
@@ -110,9 +135,6 @@ margin-top: -25%;
   cursor: pointer;
   border: none;
   border-radius: 5px;
- 
-
-
 }
 
 .buttonwithpointer{
