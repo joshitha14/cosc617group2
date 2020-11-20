@@ -1,8 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import profilepic from "./images/Dog1/pp.jpeg";
 import pic3 from "./images/Dog1/processed2.jpeg";
 import pic4 from "./images/Dog1/upload1.jpeg";
-import {AuthContext} from "./AuthContext";
 import './App.css';
 
 
@@ -10,7 +9,7 @@ import './App.css';
 
 
 function Profile() {
-    const {logout} = useContext(AuthContext);
+
     return (
         
         <div>
@@ -26,10 +25,9 @@ function Profile() {
                     <p>Breed: </p>  <span>German Shepherd </span>
                 </div>
                 
-                <div className="topnav">
+                <div className="">
                 <h4>Welcome, Oscar Black</h4>
-                <h6 onClick={logout}>Signout</h6>
-                <h6><i class="fas fa-sign-out-alt"></i></h6>
+                <h6><i className="fas fa-sign-out-alt"></i></h6>
                 </div>
                 <img className="imagereelpics" src={profilepic} alt="Profile" id="myimg" />
                 <img className="imagereelpics" src={pic3} alt="Profile" />

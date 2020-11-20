@@ -74,7 +74,7 @@ header h4{
   position:absolute;
   top: 25%;
   left: 40%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
   margin-top: 5%;
   display: block;
 
@@ -82,7 +82,7 @@ header h4{
 
 .mainheading h1{
   color:black;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .presentation{
@@ -441,4 +441,8 @@ textarea
   border:none;
   cursor: pointer;
 
+}
+
+.hideLink{
+  display: none;
 }

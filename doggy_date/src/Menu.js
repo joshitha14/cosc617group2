@@ -2,10 +2,11 @@ import React, {useContext} from "react";
 import './App.css';
 import {AuthContext} from "./AuthContext";
 import logo from "./images/logo.png";
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom';
 
 function Menu(){
-    const {authState} = useContext(AuthContext);
+    const {isAuthenticated, logout} = useContext(AuthContext);
+    const location = useLocation(); 
     return(
         <div>
             
@@ -19,29 +20,32 @@ function Menu(){
                     <nav>
                         <ul className="menu">
                             
-                            <Link to ={authState.isAuth ? '/meet' : '/login'}>
-                            <li className="meet">MEET</li>
+                            <Link to ='/meet'>
+                            <li className={!isAuthenticated() ? 'hideLink' : ''}>MEET</li>
                             </Link>
 
                             <Link to ="/matches">
-                            <li className="matches">MATCHES</li>
+                            <li className={!isAuthenticated() ? 'hideLink' : ''}>MATCHES</li>
                             </Link>
 
-                            <li>BLOG</li>
-                          
+                            <Link to ="/profile">
+                            <li className={!isAuthenticated() ? 'hideLink' : ''}>PROFILE</li>
+                            </Link>
 
-                      
-                            <li>SUPPORT</li>
-                      
+                            <Link onClick={logout} to ="">
+                            <li className={`signin ${!isAuthenticated() ? 'hideLink' : ''}`}>LOGOUT</li>
+                            </Link>
 
-                   
-                            <li>CONTACT US</li>
-                    
+                            {/* <li>BLOG</li> */}
+                            {/* <li>SUPPORT</li> */}
+                            {/* <li>CONTACT US</li> */}
+                
+                            <Link to ="/">
+                            <li className={`signin ${isAuthenticated() || location.pathname==='/' ? 'hideLink' : ''}`}>LOG IN</li>
+                            </Link>
 
-                            
-                            
-                            <Link to ={authState.isAuth ? '/home' : '/signup'}>
-                            <li className="signup">SIGN UP</li>
+                            <Link to ="/signup">
+                            <li className={`signin ${isAuthenticated() ? 'hideLink' : ''}`}>SIGN UP</li>
                             </Link>
                             
                         </ul>
