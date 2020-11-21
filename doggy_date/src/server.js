@@ -202,7 +202,6 @@ app.post('/matches', function(req,res){
         //If the user who clicked the like button is the likee in the existing record (meaning the other user
         //liked them first), and the reciprocated bit is currently 0, set the "Reciprocated" bit to 1 and a match is made.
         else if (liker === result[0].Likee && !result[0].Reciprocated) {
-          console.log(result[0].Reciprocated);//for testing only
           con.query("UPDATE matches SET Reciprocated=1 WHERE Liker=? and Likee=?",[result[0].Liker, result[0].Likee], function (err, result) {
             if (err) throw err.message;
             res.status(200).json({status:200, message:'Potential match created.'});
@@ -211,7 +210,6 @@ app.post('/matches', function(req,res){
         //If the reciprocated bit is set to 1, meaning that a match currently exists, and either user taps
         //the like button, nothing will happen. 
         else {
-          console.log(result[0].Reciprocated);//for testing only
           res.status(200).json({status:200, message:'Match already exists. No action taken.'});
           // con.query("UPDATE matches SET Reciprocated=0 WHERE Liker=? and Likee=?",[result[0].Liker, result[0].Likee], function (err, result) {
           //   if (err) throw err.message;
@@ -281,8 +279,6 @@ app.get('/getMatchDetails', function (req, res) {
 
   con.connect(function(err) {
     if (err) throw err;
-    console.log(qs.Username);
-    console.log(query);
     con.query(query, [qs.Username, qs.Username], function (err, result, fields) {
       if (err) throw err;
       res.send(result);
@@ -372,7 +368,6 @@ app.get('/photos', function (req, res) {
 
   con.connect(function(err) {
     if (err) throw err;
-    console.log(qs.Username);
     if(qs.Username) {//send user data for specified user name
       con.query("SELECT * FROM photos WHERE Username=? ORDER BY PhotoID ASC", [qs.Username], function (err, result, fields) {
         if (err) throw err;

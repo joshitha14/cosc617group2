@@ -46,20 +46,22 @@ select {
 }
 
 textarea {
-  width: 300px;
+  width: 340px;
   height: 140px;
   margin-top: 10px;
 }
 
 .save-button {
   font-family: 'Poppins', sans-serif;
-  width: 200px;
+  width: 150px;
   background-color: brown;
   color:#fff;
   padding: 10px 10px 10px 10px;
-  font-size: 22px;
+  font-size: 18px;
   border:none;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
+  border-style: outset;
+  border-width: 3px;
 }
 
