@@ -6,7 +6,7 @@ import './profile.css';
 function Profile() { 
 
   const {authState} = useContext(AuthContext);
-  console.log(authState.userInfo.userName);
+
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
   useEffect (() => {

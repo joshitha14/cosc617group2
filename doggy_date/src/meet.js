@@ -5,6 +5,8 @@ import cross from "./images/times-solid.svg";
 
 
 function Meet() { 
+  console.log('test:meet');//for testing only
+
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
   useEffect (() => {
@@ -151,9 +153,9 @@ function Meet() {
             <div id="bio">{user.Bio}</div>
             <div className="reactions">
               <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}}
-                onClick={() => createMatch(user.Username)}/>
+                onClick={() => createMatch(user.Username)} alt="Heart"/>
               <img src={cross} height="48px"
-                onClick={() => destroyMatch(user.Username)}/>
+                onClick={() => destroyMatch(user.Username)} alt="X"/>
             </div>
           </div>
         </div>

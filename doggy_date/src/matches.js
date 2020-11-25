@@ -4,8 +4,8 @@ import Chat from './chat';
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
 
-
 function Matches() { 
+  console.log("meet:matches");//for testing only
 
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
@@ -80,8 +80,6 @@ function Matches() {
 
   function destroyMatch(likee) {
     const liker = (JSON.parse(localStorage.getItem('userInfo'))).userName;
-    console.log(likee);//for testing only
-    console.log(liker);//for testing only
 
     const match = {
       Liker: liker,
@@ -115,13 +113,11 @@ function Matches() {
     //Need to look into this further. 
     var temp = users;
     for(var i = 0; i < temp.length; i++) {
-      if(temp[i].Username = likee)
-        console.log(temp[i].Username);//for testing only
+      if(temp[i].Username === likee)
         temp.splice(i,1);
         break;
     }
     setUsers(temp);
-    console.log(users);//for testing only
   }
   
   if(users.length > 0){
@@ -133,7 +129,7 @@ function Matches() {
           {users.map((user,index) => (<img key={user.Username} className="matchesPic" src={generateLinkToMainPhoto(user.Username)} alt="Profile" onClick={() => setCurrentMatch(users[index])} /> ))}
         </div>
       </div>
-      <Chat />
+      <Chat matchUserName={currentMatch.Username}/> 
       <div className="card">
         <div className="newsFeedpicContainer">
           <img className="newsfeedpic" id={`main-pic-${currentMatch.Username}`} src={generateLinkToMainPhoto(currentMatch.Username)} 
@@ -147,8 +143,8 @@ function Matches() {
           <p>Breed:</p>  <span>{currentMatch.Breed}</span><br />
           <div id="bio">{currentMatch.Bio}</div>
           <div className="reactions">
-            <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}} />
-            <img src={cross} height="48px" onClick={() => destroyMatch(currentMatch.Username)}/>
+            <img src={heart} height="42px" style={{padding:"0px 66px 0 0"}} alt="Heart"/>
+            <img src={cross} height="48px" onClick={() => destroyMatch(currentMatch.Username)} alt="X"/>
           </div>
         </div>
       </div>

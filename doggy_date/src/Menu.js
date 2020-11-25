@@ -3,7 +3,7 @@ import './App.css';
 import {AuthContext} from "./AuthContext";
 import logo from "./images/logo.png";
 import {Link, useLocation} from 'react-router-dom';
-import {useEffect, useState} from "react"; //used to set user photo.
+// import {useEffect, useState} from "react"; //used to set user photo.
 
 function Menu(){
     const {isAuthenticated, logout, authState} = useContext(AuthContext);

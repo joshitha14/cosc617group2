@@ -45,7 +45,6 @@ app.use(session({
           }
      }),
 );
-
 //****************************************************************************
 
 
@@ -61,11 +60,29 @@ const io = require("socket.io")(http, {
   }
 });
 
+//On the sever side, .on listens for and catches messages from clients,
+//and .emit sends the caught messages to all of the clients on the socket.
+//The io variable represents the group of sockets. 
+//The socket variable is for communicating with each individual connection.
+//socket.emit will send back message to the sender only.
+//io.emit will send messages to all the client including sender.
+//The first paramater in socket.on takes a string (currently 'message') which 
+//can be any string defined by the user, but it must match string in the 
+//first paramater of the emit message on the client side. This is how
+//.on knows what to listen for. The second paramater in .emit is the message that is
+//sent, and in .on the secon paramater is a variable that will hold the message received. 
 io.on('connection', socket => {
-  socket.on('message', ({ name, message }) => {
-    io.emit('message', { name, message })
+
+  //Join the user to the private room.
+  socket.on('joinRoom', room => {
+    socket.join(room);
+  });
+
+  //Listen for messages and then emit back to clients.
+  socket.on('message', ({ name, message, room }) => {
+    io.to(room).emit('message', { name, message })
   })
-})
+});
 //****************************************************************************
 
 
