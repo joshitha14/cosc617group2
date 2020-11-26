@@ -7,6 +7,7 @@ const { Console } = require('console');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cors = require('cors')// Needed when app and db are both running on same host (npm install cors --save)
+const fileUpload = require('express-fileupload');//used for the photo upload
 const cookieParser = require('cookie-parser');
 /*cookieparser helps to sign the 'session id' with 'secret string' we pass, 
 that way we can get hold of new session signed coookie and set this cookie in response 
@@ -120,6 +121,86 @@ app.post('/register', function(req,res){
         });
         }
      });
+    }
+    catch(error) {
+         console.log(error.message);
+    }
+});
+
+//****************************************************************************
+
+
+//****************************************************************************
+//User photo upload:
+
+app.use(fileUpload({
+  createParentPath: true //Allows cretion of new directory/path does not exist. 
+}));
+
+//Post the photo to the local directory:
+app.post('/upload', (req, res) => {
+
+  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`../public/pubImages/${qs.Username}/${qs.FileName}`, err => {
+
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/pubImages/pubImages/${qs.Username}/${qs.FileName}` });
+    console.log(file);
+  });
+});
+
+
+//get file name of most recent photo:
+app.get('/mostRecentPhoto', function (req, res) {
+   
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+
+  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+
+  con.connect(function(err) {
+    if (err) throw err;
+
+      con.query("SELECT * FROM photos WHERE Username=? ORDER BY PhotoID DESC LIMIT 1", [qs.Username], function (err, result, fields) {
+        if (err) throw err;
+
+        res.send(result);
+      });
+  });
+});
+
+//Post new photo file name to database. 
+app.post('/newPhotoName', function(req,res){
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+
+  try {
+      const userName = req.body.Username;
+      const photoID = req.body.PhotoID;
+      console.log(req.body);
+      console.log(userName + " " + photoID);
+        con.query("INSERT INTO photos SET ?",{Username: userName, PhotoID: photoID} , function (err, result) {
+          if (err) throw err.message;  
+        });
     }
     catch(error) {
          console.log(error.message);

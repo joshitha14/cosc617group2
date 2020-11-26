@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 import {AuthContext} from "./AuthContext";
 import './profile.css';
+import PhotoUpload from "./photoUpload";
 
 
 function Profile() { 
@@ -15,7 +16,7 @@ function Profile() {
 
   var [users, setUsers] = useState([]);
 
-  var [currentMatch, setCurrentMatch] = useState({});
+  var [currentUser, setcurrentUser] = useState({});
 
   //Fetch user details and photo ID#s. Store in separate object for each user:
   const fetchUserDetails = async () => {
@@ -33,7 +34,7 @@ function Profile() {
       }
     }
     setUsers(userDetails);
-    setCurrentMatch(userDetails[0]);
+    setcurrentUser(userDetails[0]);
   }
 
   // Generate a link to the users primary (first) photo:
@@ -116,6 +117,7 @@ function Profile() {
           </select> <br />
           <label>Zip</label>
           <input type="text" name="zip" /> <br />
+          <PhotoUpload />
           <textarea name="bio" rows="6"cols="25" placeholder="Describe yourself..."></textarea>
         </div>
         <div className="formColumn">
@@ -160,16 +162,16 @@ function Profile() {
       </form>
       <div className="card">
         <div className="newsFeedpicContainer">
-          <img className="newsfeedpic" id={`main-pic-${currentMatch.Username}`} src={generateLinkToMainPhoto(currentMatch.Username)} 
-          alt="Profile" onClick={() => showNextImage(currentMatch.Username)} />
+          <img className="newsfeedpic" id={`main-pic-${currentUser.Username}`} src={generateLinkToMainPhoto(currentUser.Username)} 
+          alt="Profile" onClick={() => showNextImage(currentUser.Username)} />
         </div>
-        <h1 id="firstName">{currentMatch.First_name}</h1>
+        <h1 id="firstName">{currentUser.First_name}</h1>
         <div className="profilecontent">
-          <p>Age:</p><span>{getAge(currentMatch.Birthdate)}</span>
-          <p>Sex:</p><span>{currentMatch.Sex} </span>
-          <p>Weight(lbs):</p><span>{currentMatch.Weight}</span>
-          <p>Breed:</p>  <span>{currentMatch.Breed}</span> <br />
-          <div id="bio">{currentMatch.Bio}</div>
+          <p>Age:</p><span>{getAge(currentUser.Birthdate)}</span>
+          <p>Sex:</p><span>{currentUser.Sex} </span>
+          <p>Weight(lbs):</p><span>{currentUser.Weight}</span>
+          <p>Breed:</p>  <span>{currentUser.Breed}</span> <br />
+          <div id="bio">{currentUser.Bio}</div>
         </div>
       </div>
     </div>

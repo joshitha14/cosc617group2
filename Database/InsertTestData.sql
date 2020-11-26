@@ -12,17 +12,17 @@ VALUES ('Remi_01', 'Remi', '2019-09-23', 'M', 1, 23, 'French Bulldog', 21090,
 'I like to sleep and bark.', 2, 16, 'X', 25, 100, 'Any', 25, 'x');
 
 INSERT INTO PHOTOS
-VALUES ('Remi_01', 'remi-pic1'),
-('Remi_01', 'remi-pic2'),
-('Remi_01', 'remi-pic3'),
-('Remi_01', 'remi-pic4'),
-('Gus_01', 'gus-pic1'),
-('Gus_01', 'gus-pic2'),
-('Gus_01', 'gus-pic3'),
-('Gus_01', 'gus-pic4'),
-('Kona_01', 'kona-pic1'),
-('Kona_01', 'kona-pic2'),
-('Kona_01', 'kona-pic3');
+VALUES ('Remi_01', 'Remi_01-pic1'),
+('Remi_01', 'Remi_01-pic2'),
+('Remi_01', 'Remi_01-pic3'),
+('Remi_01', 'Remi_01-pic4'),
+('Gus_01', 'Gus_01-pic1'),
+('Gus_01', 'Gus_01-pic2'),
+('Gus_01', 'Gus_01-pic3'),
+('Gus_01', 'Gus_01-pic4'),
+('Kona_01', 'Kona_01-pic1'),
+('Kona_01', 'Kona_01-pic2'),
+('Kona_01', 'Kona_01-pic3');
 
 INSERT INTO MATCHES
 VALUES('Remi_01', 'Gus_01', 1),

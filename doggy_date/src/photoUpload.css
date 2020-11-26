@@ -1,0 +1,16 @@
+.formColumn input[type=file] {
+  margin: 8px 10px;
+  border:none;
+  outline: none;
+  border-radius: 20px;
+  height: 15px;
+  width: 185px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.photoLabel {
+  width: 20px;
+  margin-right: 10px;
+}

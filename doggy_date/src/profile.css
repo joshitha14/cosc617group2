@@ -23,7 +23,7 @@ label {
 
 
 .formColumn input[type=text], input[type=password], input[type=date], input[type=number] {
-  margin: 10px 10px;
+  margin: 8px 10px;
   border:none;
   background: white;
   outline: none;
@@ -42,12 +42,12 @@ select {
   height: 35px;
   width: 220px;
   padding: 10px;
-  margin: 10px 10px;
+  margin: 8px 10px;
 }
 
 textarea {
   width: 340px;
-  height: 140px;
+  height: 120px;
   margin-top: 10px;
 }
 
