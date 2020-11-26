@@ -544,6 +544,44 @@ app.get('/matches', function (req, res) {
 });
 //****************************************************************************
 
+//****************************************************************************
+//Post Requests
+
+//Post Profile data to user_details table
+
+app.post('/user_details', function(req,res){
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+
+  try {
+      const {Username, First_name, Birthdate, Sex, Weight, Breed, Zip_code, Bio, Age_min_pref, Age_max_pref, Sex_pref, Weight_min_pref, Weight_max_pref, Breed_pref, Dist_pref} = req.body;
+      if(!Username){
+        res.status(400).send({message:'Username missing'});
+        }
+        con.query("SELECT * FROM user_details WHERE Username =?",[Username], function (err, result) {
+          if (err) throw err.message;
+
+          else if (result.length > 0)
+          {
+              con.query("UPDATE user_details SET ? WHERE Username =?",[{First_name: First_name, Birthdate: Birthdate, Sex: Sex, Weight: Weight, Breed: Breed, Zip_code: Zip_code, Bio: Bio, Age_min_pref: Age_min_pref, Age_max_pref: Age_max_pref, Sex_pref: Sex_pref, Weight_min_pref: Weight_min_pref, Weight_max_pref: Weight_max_pref, Breed_pref: Breed_pref, Dist_pref: Dist_pref} ,Username], function (err, result) {
+                if (err) throw err.message;
+                res.status(200).json({status:200, message:'Profile updated successful'});
+              });      
+          }
+       });
+    }
+    catch(error) {
+         console.log(error.message);
+    }
+});
+
+//****************************************************************************
+
+
 //Socket.io requires the connection to be an http connection. 
 http.listen(3001, function() {
   console.log('listening on port 3001')

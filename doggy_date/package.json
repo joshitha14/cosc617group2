@@ -12,6 +12,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
     "express-mysql-session": "^2.1.4",
     "express-session": "^1.17.1",
     "http": "0.0.1-security",
@@ -23,7 +24,7 @@
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.21",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "socket.io": "^3.0.1",
     "socket.io-client": "^3.0.1"
   },
