@@ -26,13 +26,14 @@ header{
   font-size: 22px;
   text-decoration: none;
   color:brown;
+  margin: auto;
 }
 
 .menuPic {
   border-radius: 50%;
   /* border:brown 2px solid; */
-  height: 55px;
-  width: 55px;
+  height: 60px;
+  width: 60px;
   object-fit: cover;
   margin-left: 20px;
   /* float: left; */
@@ -119,7 +120,7 @@ header h4{
 
 .imagebanner img{
 width: 100%;
-margin-top: -25%;
+/* margin-top: -25%; */
 
 }
 .logo img {
@@ -179,7 +180,7 @@ a:hover{
 }
 
 .loginform {
-  width:400px;
+  width:350px;
   height: auto;
   background-color:rgb(165, 42, 42);
   text-align: center;
@@ -188,13 +189,35 @@ a:hover{
   color:white;
   margin-left: 70%;
   position: absolute; 
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin-top:100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top:20px;
   box-shadow: 2px 5px 15px black;
-  
+}
 
-  
+.loginform input[type=text], input[type=password], input[type=date], input[type=number]
+{
+  margin: 5px 10px;
+  border:none;
+  background: white;
+  outline: none;
+  border-radius: 20px;
+  height: 15px;
+  width: 200px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.loginform input[type=submit]
+{
+ padding:10px 20px;
+  color: #fff;
+  border: 2px solid #fff;
+  background:transparent;
+  font-size: 20px;
+  width: 200px;
+  margin-top: 30px;
 }
 
 /*############  Sign Up Form ################ */
@@ -227,19 +250,7 @@ a:hover{
   font-weight: bold;
 }
 
-.loginform input[type=text], input[type=password], input[type=date], input[type=number]
-{
-  margin: 10px 10px;
-  border:none;
-  background: white;
-  outline: none;
-  border-radius: 20px;
-  height: 15px;
-  width: 200px;
-  padding: 10px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-}
+
 
 #custom-select
 {

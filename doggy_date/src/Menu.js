@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import './App.css';
 import {AuthContext} from "./AuthContext";
 import logo from "./images/logo.png";
@@ -9,27 +9,7 @@ function Menu(){
     const {isAuthenticated, logout, authState} = useContext(AuthContext);
     const location = useLocation(); 
 
-
-    //The below code is used to diplay the users photo in the navigation menu
-    //but for some reason the component won't re-redner after the photo is
-    //retreived, so the photo only shows after clicking the refresh button
-    //in the browser. (Ian)
-
-    // var currentUser = authState.userInfo.userName;
-
-    // useEffect (() => {
-    //     fetchUserPhotoID();
-    // }, []);
-    
-    // var [photo, setPhoto] = useState('');
-
-    // const fetchUserPhotoID = async () => {
-    //     const data = await fetch(`http://localhost:3001/photos?Username=${currentUser}`)
-    //     const userPhotoIDs = await data.json();
-    //     setPhoto(userPhotoIDs[0].PhotoID);
-    // }
-    // console.log(photo);
-
+    var currentUser = authState.userInfo.userName;
 
     return(
         <div>
@@ -68,12 +48,16 @@ function Menu(){
                             <li className={`signin ${isAuthenticated() ? 'hideLink' : ''}`}>SIGN UP</li>
                             </Link>
 
-                            {/* <li>
-                                <img className='menuPic'src={`./pubImages/${currentUser}/${photo}.jpg`}/>
-                            </li> */}
+
                             
                         </ul>
                     </nav>
+                {/* The below code will display the users photo in the menu when they are logged in but it is not a permanent solution. If user deletes their pic1, then the photo will not display. I tried doing a call to the database to get the photo name of the first photo instead of hard-coding "pic1", but his proved to be challenging. For some reason the image would only show after reloading the page. The menu would not rerender after the photo name was retrived and the photo state variable was updated. Best solution may 
+                be to get the photo name form the DB and store it in the authState */}
+                <div>
+                    {isAuthenticated() ? <img className='menuPic'src={`./pubImages/${currentUser}/${currentUser}-pic1.jpg`}/> : ''}
+                </div>
+                
             </header>
 
         </div>

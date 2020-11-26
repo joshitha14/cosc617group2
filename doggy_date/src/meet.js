@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import {AuthContext} from "./AuthContext";
 import './App.css';
 import heart from "./images/heart-solid.png"
 import cross from "./images/times-solid.svg";
 
 
 function Meet() { 
-  console.log('test:meet');//for testing only
+  const {authState} = useContext(AuthContext);
+  var currentUser = authState.userInfo.userName;
 
   //useEffect() will be used to call fetchUserDetails() when the component mounts. 
   //The [] argument tells useEffect() to run when the component mounts. 
@@ -15,9 +17,9 @@ function Meet() {
 
   var [users, setUsers] = useState([]);
 
-  //Fetch user details and photo ID#s. Store in separate object for each user:
+  //Fetch user details and photo ID#s for all other users. Store in separate object for each user:
   const fetchUserDetails = async () => {
-    const data = await fetch('http://localhost:3001/user_details/');
+    const data = await fetch(`http://localhost:3001/meetUsers?Username=${currentUser}`);
     const userDetails = await data.json();
     //For each user, fetch the list of image filenames and store the list as an array
     //in the object for that user.

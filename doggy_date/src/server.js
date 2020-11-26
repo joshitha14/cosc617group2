@@ -452,6 +452,32 @@ app.get('/user_details', function (req, res) {
   });
 });
 
+//Get data from user_details table for all except on uesr.
+//Used for the Meet page.  
+app.get('/meetUsers', function (req, res) {
+   
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password123",
+    database: "doggydate"
+  });
+  
+  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+
+  con.connect(function(err) {
+    if (err) throw err;
+
+      con.query("SELECT * FROM user_details WHERE Username!=?", [qs.Username], function (err, result, fields) {
+        if (err) throw err;
+
+        res.send(result);
+      });
+    
+
+  });
+});
+
 //Get data from photos table for one or all users. 
 app.get('/photos', function (req, res) {
    

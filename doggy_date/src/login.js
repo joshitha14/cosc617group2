@@ -36,9 +36,10 @@ function Login () {
       }
     })
   }
+
   return(
     <div className="loginform">
-      <h1>WELCOME, DOG LOVERS!</h1>
+      <h2>WELCOME, DOG LOVERS!</h2>
       <form action="newsfeed.js" method="get" onSubmit={handleSubmit}>
         <p>User Name</p>
         <input type="text" name="username" 
