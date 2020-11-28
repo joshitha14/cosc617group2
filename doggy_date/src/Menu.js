@@ -11,6 +11,7 @@ function Menu(){
 
     var currentUser = authState.userInfo.userName;
 
+
     return(
         <div>
             
@@ -52,10 +53,9 @@ function Menu(){
                             
                         </ul>
                     </nav>
-                {/* The below code will display the users photo in the menu when they are logged in but it is not a permanent solution. If user deletes their pic1, then the photo will not display. I tried doing a call to the database to get the photo name of the first photo instead of hard-coding "pic1", but his proved to be challenging. For some reason the image would only show after reloading the page. The menu would not rerender after the photo name was retrived and the photo state variable was updated. Best solution may 
-                be to get the photo name form the DB and store it in the authState */}
+                {/* The below code will display the users photo in the menu when they are logged in but it is not a permanent solution. If the user deletes their pic1, then the photo will not display. I tried doing a call to the database to get the photo name of the first photo instead of hard-coding "pic1", but this proved to be challenging. For some reason the image would only show after reloading the page. The menu would not re-render automatically after the photo name was retrived and the photo state variable was updated. Best solution may be to get the photo name from the DB and store it in the authState. (Ian)*/}
                 <div>
-                    {isAuthenticated() ? <img className='menuPic'src={`./pubImages/${currentUser}/${currentUser}-pic1.jpg`}/> : ''}
+                    {isAuthenticated() ? <img className='menuPic'src={`./pubImages/${currentUser}/${currentUser}-pic1.jpg`} onError={i => i.target.style.display='none'} /> : ''}
                 </div>
                 
             </header>
