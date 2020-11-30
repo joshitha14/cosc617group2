@@ -9,6 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cors = require('cors')// Needed when app and db are both running on same host (npm install cors --save)
 const fileUpload = require('express-fileupload');//used for the photo upload
 const cookieParser = require('cookie-parser');
+const path = require('path');
 /*cookieparser helps to sign the 'session id' with 'secret string' we pass, 
 that way we can get hold of new session signed coookie and set this cookie in response 
 using ' res.cookie' after user login. Next time when user tries to access any other routes 
@@ -85,7 +86,6 @@ io.on('connection', socket => {
   })
 });
 //****************************************************************************
-
 
 //****************************************************************************
 //Signup
@@ -222,7 +222,8 @@ app.post('/login', function(req,res){
   
 
   try {
-       const {userName, password} = req.body;
+      
+    const {userName, password} = req.body;
        if(!userName || !password){
             return res.status(400).send({message:'Please provide an email and password'});
         }
@@ -581,8 +582,17 @@ app.post('/user_details', function(req,res){
 
 //****************************************************************************
 
+//Serve static assessts if in production 
+if(process.env.NODE_ENV==="production"){
+app.use(express.static('doggy_date/build'));
+app.get('*',(req,res)=>{
+res.sendFile(path.resolve(__dirname,'doggy_date','build', 'index.html'));
+});
+}
 
+
+const PORT = process.env.PORT || '3001'
 //Socket.io requires the connection to be an http connection. 
-http.listen(3001, function() {
+http.listen(PORT, function() {
   console.log('listening on port 3001')
 })
