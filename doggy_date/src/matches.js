@@ -1,3 +1,8 @@
+//This component displays the use matches and provide a chat window for chatting.
+//Note: some of the code to display the user profile cards is repeated in the
+//profile.js, meet.js and matches.js files. When I intially wrote the code,
+//I was not adept at creating reusable components, although I did get better
+//at creating reusable components as I worked on this probject. (Ian)
 import React, {useEffect, useState} from "react";
 import './matches.css';
 import Chat from './chat';
@@ -17,12 +22,12 @@ function Matches() {
 
   var [currentMatch, setCurrentMatch] = useState({});
 
-  //Fetch user details and photo ID#s. Store in separate object for each user:
+  //Fetch user details and photo filenames. Store in separate object for each user:
   const fetchUserDetails = async () => {
     const data = await fetch('http://localhost:3001/getMatchDetails?Username='+ 
       (JSON.parse(localStorage.getItem('userInfo'))).userName);
     const userDetails = await data.json();
-    //For each user, fetch the list of image filenames and store the list as an array
+    //For each user, fetch the list of photo filenames and store the list as an array
     //in the object for that user.
     for(var user of userDetails) {
       const data = await fetch(`http://localhost:3001/photos?Username=${user.Username}`);
@@ -48,6 +53,7 @@ function Matches() {
     return `./pubImages/${username}/${photoID}.jpg`
   }
 
+  //Show the user's next image upon clicking the current image:
   function showNextImage(username) {
     //Find the particular user in the array of users:
     var user;
@@ -66,6 +72,11 @@ function Matches() {
 
   //Calculate age from birthdate.
   function getAge(birthDay){
+    
+    //Return if user has not entered a birhtday. 
+    if(!birthDay)
+      return;
+
     const milisecondsPerYear = 31536000000;
     const milisecondsPerMonth = 2629800000;
     var today = new Date();
@@ -78,6 +89,7 @@ function Matches() {
       return Math.floor(ageMiliseconds / milisecondsPerMonth).toString() + "m";
   }
 
+  //Destroy a match upon clicking the X button:
   function destroyMatch(likee) {
     const liker = (JSON.parse(localStorage.getItem('userInfo'))).userName;
 
@@ -107,10 +119,8 @@ function Matches() {
     });
 
     //Remove the match from the current state and remount the component
-    //NOTE: the match is removed but for the compoentns doesn't re-mount
-    //when setUsers is called. Couldn't get forceUpdate() to work either.
-    //Might have to use .bind(this) somewhere but not ure where. 
-    //Need to look into this further. 
+    //NOTE: the match is removed but the component doesn't re-mount
+    //when setUsers is called. Need to look into this further. 
     var temp = users;
     for(var i = 0; i < temp.length; i++) {
       if(temp[i].Username === likee)

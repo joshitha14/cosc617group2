@@ -1,3 +1,8 @@
+//This component displays the other users on the site for browsing and match-making.
+//Note: some of the code to display the user profile cards is repeated in the
+//profile.js, meet.js and matches.js files. When I intially wrote the code,
+//I was not adept at creating reusable components, although I did get better
+//at creating reusable components as I worked on this probject. (Ian)
 import React, {useEffect, useState, useContext} from "react";
 import {AuthContext} from "./AuthContext";
 import './App.css';
@@ -17,7 +22,7 @@ function Meet() {
 
   var [users, setUsers] = useState([]);
 
-  //Fetch user details and photo ID#s for all other users. Store in separate object for each user:
+  //Fetch user details and photo filenames for all other users. Store in separate object for each user:
   const fetchUserDetails = async () => {
     const data = await fetch(`http://localhost:3001/meetUsers?Username=${currentUser}`);
     const userDetails = await data.json();
@@ -46,6 +51,7 @@ function Meet() {
     return `./pubImages/${username}/${photoID}.jpg`
   }
 
+  //Show the user's next image upon clicking the current image:
   function showNextImage(username) {
     //Find the particular user in the array of users:
     var user;
@@ -64,6 +70,11 @@ function Meet() {
 
   //Calculate age from birthdate.
   function getAge(birthDay){
+    
+    //Return if user has not entered a birhtday. 
+    if(!birthDay)
+      return;
+
     const milisecondsPerYear = 31536000000;
     const milisecondsPerMonth = 2629800000;
     var today = new Date();

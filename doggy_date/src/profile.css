@@ -21,7 +21,6 @@ label {
   width: 125px;
  } 
 
-
 .formColumn input[type=text], input[type=password], input[type=date], input[type=number] {
   margin: 8px 10px;
   border:none;

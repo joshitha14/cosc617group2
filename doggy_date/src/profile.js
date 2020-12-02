@@ -1,3 +1,7 @@
+//Note: some of the code to display the user profile cards is repeated in the
+//profile.js, meet.js and matches.js files. When I intially wrote the code,
+//I was not adept at creating reusable components, although I did get better
+//at creating reusable components as I worked on this probject. (Ian)
 import React, {useEffect, useState, useContext} from "react";
 import {AuthContext} from "./AuthContext";
 import './profile.css';
@@ -35,6 +39,7 @@ function Profile() {
     
   }, [authState]);
 
+  //Show the user's next image upon clicking the current image:
   function showNextImage(username) {
     //Increment the value of the currentImage property to reflect the index of the next image. 
     //Loop back to index 0 at the end of the image array:
@@ -48,6 +53,11 @@ function Profile() {
 
   //Calculate age from birthdate.
   function getAge(birthDay){
+    
+    //Return if user has not entered a birhtday. 
+    if(!birthDay)
+      return;
+
     const milisecondsPerYear = 31536000000;
     const milisecondsPerMonth = 2629800000;
     var today = new Date();

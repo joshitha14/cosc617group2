@@ -1,10 +1,11 @@
 /* 
-I copied these styles over from the App.css file but did not finish switching 
-over to this file. Before switching, I will need to change all the classNames and
-ids, otherwise the meet.css and app.css files will conflict where the classNames
-and ids are the same. The matches.js file also uses the styles in the App.css file.
-Some of these can be deleted from App.css but some are used by other components.  
-Ian.
+I copied these styles over from the App.css file in order to modularize the css, 
+but I did not finish switching over to this file. Before switching, I will need to 
+change all the classNames and ids, otherwise the meet.css and app.css files will 
+conflict where the classNames and ids are the same. The matches.js file also uses 
+the styles in the App.css file. Some of these can be deleted from App.css but some 
+are used by other components.  
+(Ian)
 
 
 .card{

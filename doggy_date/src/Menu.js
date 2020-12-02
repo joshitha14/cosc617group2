@@ -11,17 +11,14 @@ function Menu(){
 
     var currentUser = authState.userInfo.userName;
 
-
     return(
         <div>
-            
             <header>
                 <div className="logo">
                 <Link to ="/">
                 <img src={logo} alt="logo"/>
                 </Link>
                 </div>
-
                     <nav>
                         <ul className="menu">
                             
@@ -48,8 +45,6 @@ function Menu(){
                             <Link to ="/signup">
                             <li className={`signin ${isAuthenticated() ? 'hideLink' : ''}`}>SIGN UP</li>
                             </Link>
-
-
                             
                         </ul>
                     </nav>
@@ -57,9 +52,7 @@ function Menu(){
                 <div>
                     {isAuthenticated() ? <img className='menuPic'src={`./pubImages/${currentUser}/${currentUser}-pic1.jpg`} onError={i => i.target.style.display='none'} /> : ''}
                 </div>
-                
             </header>
-
         </div>
     );
 }

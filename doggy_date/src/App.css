@@ -1,15 +1,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-*{
+* {
   margin: 0;
 }
 
-body{
+body {
   font-family: 'Poppins', sans-serif;
 }
 
-header{
+header {
   display: flex;
   margin: auto;
   width:90%;
@@ -18,7 +18,8 @@ header{
  position: sticky;
   top:0;
 }
-.menu{
+
+.menu {
   display: flex;
  justify-content: space-around;
   list-style: none;
@@ -31,51 +32,45 @@ header{
 
 .menuPic {
   border-radius: 50%;
-  /* border:brown 2px solid; */
   height: 60px;
   width: 60px;
   object-fit: cover;
   margin-left: 20px;
-  /* float: left; */
-  /* margin: 10px; */
-  /* float: left; */
 }
 
-nav{
+nav {
   flex:1;
-
 }
-.menu a{
+
+.menu a {
   font-size: 22px;
   text-decoration: none;
   color:brown;
-  
-
 }
-.menu li
-{
+
+.menu li {
   padding: 5px 30px;
   margin:5px;
 }
-.logo{
- 
-padding: 10px 10px;
-align-items: center;
 
-
+.logo { 
+  padding: 10px 10px;
+  align-items: center;
 }
-.signup{
+
+.signup {
   background-color:white;
   font-family: 'Poppins', sans-serif;
   padding: 5px 5px 5px 5px;
   width: 100px;
- border: 2px solid brown;
+  border: 2px solid brown;
 }
 .signin{
   border: 2px solid brown;
   border-radius: 5px;;
 }
-.signup a{
+
+.signup a {
   color:white;
 }
 
@@ -84,50 +79,46 @@ align-items: center;
   font-family: 'Poppins', sans-serif;
   padding: 5px 5px 5px 5px;
   width: 100px;
- border: 2px solid brown;
+  border: 2px solid brown;
 }
 
-.logout a{
+.logout a {
   color:white;
 }
 
-header h4{
-  
+header h4 {
   font-size: 15px;
 }
 
-.mainheading{
+.mainheading {
   position:absolute;
   top: 25%;
   left: 40%;
   transform: translate(-50%, -25%);
   margin-top: 5%;
   display: block;
-
 }
 
-.mainheading h1{
+.mainheading h1 {
   color:black;
   font-size: 50px;
 }
 
-.presentation{
+.presentation {
   display: flex;
   width: 90%;
   margin:auto;
- 
 }
 
-.imagebanner img{
-width: 100%;
-/* margin-top: -25%; */
-
+.imagebanner img {
+  width: 100%;
 }
+
 .logo img {
   height: 10vh;
 }
 
-.learnmore{
+.learnmore {
   padding:10px 20px;
   color: white;
   outline-style: hidden;
@@ -138,8 +129,7 @@ width: 100%;
   border-radius: 5px;
 }
 
-.buttonwithpointer{
-  
+.buttonwithpointer {
   padding:10px 20px;
   color: brown;
   border: 2px solid brown;
@@ -148,37 +138,36 @@ width: 100%;
   cursor:pointer;
 }
 
-.cta{
+.cta {
   padding: 20px;
 }
 
-.mainheading p{
+.mainheading p {
   color:brown;
   font-size:28px;
   position: relative;
-  
 }
 
-li a:hover{
+li a:hover {
   color:black;
 }
 
-.container{
+.container {
   background-color:lightgray;
   text-align: center;
 }
+
 .container a {
   text-decoration: none;
   color:brown;
   font-size: 22px;
- 
-
-
 }
-a:hover{
+
+a:hover {
   color:black;
 }
 
+/*############  Login Form ################ */
 .loginform {
   width:350px;
   height: auto;
@@ -195,8 +184,7 @@ a:hover{
   box-shadow: 2px 5px 15px black;
 }
 
-.loginform input[type=text], input[type=password], input[type=date], input[type=number]
-{
+.loginform input[type=text], input[type=password], input[type=date], input[type=number] {
   margin: 5px 10px;
   border:none;
   background: white;
@@ -209,8 +197,7 @@ a:hover{
   font-weight: bold;
 }
 
-.loginform input[type=submit]
-{
+.loginform input[type=submit] {
  padding:10px 20px;
   color: #fff;
   border: 2px solid #fff;
@@ -237,8 +224,7 @@ a:hover{
   box-shadow: 2px 5px 15px black;
 }
 
-.signupform input[type=text], input[type=password]
-{
+.signupform input[type=text], input[type=password] {
   border:none;
   background: white;
   outline: none;
@@ -250,10 +236,7 @@ a:hover{
   font-weight: bold;
 }
 
-
-
-#custom-select
-{
+#custom-select {
    border:none;
   outline: none;
   border-radius: 20px;
@@ -261,10 +244,9 @@ a:hover{
   width: 200px;
   padding: 10px;
   margin: 10px 10px;
-
 }
-.signupform input[type=submit]
-{
+
+.signupform input[type=submit] {
  padding:10px 20px;
   color: #fff;
   border: 2px solid #fff;
@@ -274,8 +256,7 @@ a:hover{
   margin-top: 30px;
 }
 
-.loginform input[type=submit]
-{
+.loginform input[type=submit] {
  padding:10px 20px;
   color: #fff;
   border: 2px solid #fff;
@@ -285,7 +266,7 @@ a:hover{
   margin-top: 30px;
 }
 
-.card{
+.card {
   width:430px;
   height: 580px;
   background-color:white;
@@ -329,8 +310,7 @@ a:hover{
   border-top: 2px rgb(161, 161, 161) solid;
 }
 
-.cardprofilepic
-{
+.cardprofilepic {
  border-radius: 50%;
  border:brown 3px solid;
   height: 80px;
@@ -339,26 +319,23 @@ a:hover{
   float: left;
 }
 
-.profilecontent p{
+.profilecontent p {
   display: inline;
   font-weight: bold;
   background-color:#f2f2f2;
   border-radius: 20px;
   padding:2px 4px 2px 4px;
-
 }
 
-.newsfeedpic
-{
+.newsfeedpic {
   height: 350px;
   width: 430px;
   object-fit: cover;
   border-radius: 20px 20px 0px 0px;
 }
-.like
-{
-  border: none;
 
+.like {
+  border: none;
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -371,7 +348,7 @@ a:hover{
 }
 
 
-.cardprofile{
+.cardprofile {
   width:100%;
   height:100px;
   background-color:brown;
@@ -386,8 +363,7 @@ a:hover{
   margin-right:5px;
 }
 
-.profilepic
-{
+.profilepic {
  border-radius: 50%;
  border:white 3px solid;
   height: 150px;
@@ -396,15 +372,15 @@ a:hover{
   position: relative; 
 }
 
-.imagereel{
+.imagereel {
   width:100%;
   height:auto;
   background-color:brown;
   padding: 20px 20px;
   box-shadow: 2px 5px 15px grey;
 }
-.imagereelpics
-{
+
+.imagereelpics {
   height: 200px;
   width: auto;
   border-radius: 5px;
@@ -412,6 +388,7 @@ a:hover{
   cursor: pointer;
   margin: 3px;
 }
+
 .topnav {
   color:white;
   display: block;
@@ -422,7 +399,6 @@ a:hover{
   text-decoration: none;
   font-size: 27px;
   cursor: pointer;
-  
 }
 
 
@@ -438,13 +414,9 @@ a:hover{
   margin-top: 22%;
   margin-left: 20%;
   position: relative;
-
-  
-  
 }
 
-.profile-signup [type=text], input[type=password]
-{
+.profile-signup [type=text], input[type=password] {
   margin: 10px 10px;
   border:none;
   background: white;
@@ -456,14 +428,13 @@ a:hover{
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   line-height: 20px;
-
 }
-textarea
-{
+
+textarea {
   resize: none;
 }
-.save-btn{
 
+.save-btn {
   font-family: 'Poppins', sans-serif;
   padding: 5px 5px 5px 5px;
   width: 200px;
@@ -473,9 +444,8 @@ textarea
   font-size: 22px;
   border:none;
   cursor: pointer;
-
 }
 
-.hideLink{
+.hideLink {
   display: none;
 }

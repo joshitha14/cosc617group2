@@ -64,15 +64,9 @@ function Signup (){
                     required /> 
                     <br/>
                     <p>{signupMsg}</p>
-                    
-                    {/* { <br/> */}
-                  
-                    
-
                     <input type="submit" name="" value="SIGN UP"/>
                 </form>
             </div>
-
         </div>
     );
 }

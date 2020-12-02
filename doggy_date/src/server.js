@@ -6,22 +6,19 @@ var url = require('url');
 const { Console } = require('console');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-var cors = require('cors')// Needed when app and db are both running on same host (npm install cors --save)
-const fileUpload = require('express-fileupload');//used for the photo upload
+var cors = require('cors')// Needed when app and db are both running on same host.
+const fileUpload = require('express-fileupload');//Used for the photo upload.
 const cookieParser = require('cookie-parser');
 /*cookieparser helps to sign the 'session id' with 'secret string' we pass, 
 that way we can get hold of new session signed coookie and set this cookie in response 
-using ' res.cookie' after user login. Next time when user tries to access any other routes 
+using 'res.cookie' after user login. Next time when user tries to access any other routes 
 to this domain we can get the signed cookie using 'req.signedCookies', 
 maybe unsign this cookie and get 'session id' back and validate with session id in sssion store, 
 also get any other information recorder in this session id
 */
 
-// app.use(cors()) 
 
-//****************************************************************************
-// Use Middlewares 
-
+//*****************************Use Middlewares *****************************
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 app.use(cookieParser('secretkey102020'));
@@ -46,11 +43,9 @@ app.use(session({
           }
      }),
 );
-//****************************************************************************
 
 
-//****************************************************************************
-//Socket.io Chat
+//******************************Socket.io Chat********************************
 const http = require('http').createServer(app)
 const io = require("socket.io")(http, {
   cors: {
@@ -65,13 +60,13 @@ const io = require("socket.io")(http, {
 //and .emit sends the caught messages to all of the clients on the socket.
 //The io variable represents the group of sockets. 
 //The socket variable is for communicating with each individual connection.
-//socket.emit will send back message to the sender only.
-//io.emit will send messages to all the client including sender.
+//socket.emit will send the message back to the sender only.
+//io.emit will send the message to all the client including sender.
 //The first paramater in socket.on takes a string (currently 'message') which 
-//can be any string defined by the user, but it must match string in the 
+//can be any string defined by the user, but it must match the string in the 
 //first paramater of the emit message on the client side. This is how
 //.on knows what to listen for. The second paramater in .emit is the message that is
-//sent, and in .on the secon paramater is a variable that will hold the message received. 
+//sent, and the second paramater in .on is a variable that will hold the message received. 
 io.on('connection', socket => {
 
   //Join the user to the private room.
@@ -84,11 +79,9 @@ io.on('connection', socket => {
     io.to(room).emit('message', { name, message })
   })
 });
-//****************************************************************************
 
 
-//****************************************************************************
-//Signup
+//*********************************Signup**********************************
 app.post('/register', function(req,res){
   const con = mysql.createConnection({
     host: "localhost",
@@ -127,12 +120,8 @@ app.post('/register', function(req,res){
     }
 });
 
-//****************************************************************************
 
-
-//****************************************************************************
-//User photo upload:
-
+//********************************User Photo Upload********************************
 app.use(fileUpload({
   createParentPath: true //Allows cretion of new directory/path does not exist. 
 }));
@@ -140,7 +129,7 @@ app.use(fileUpload({
 //Post the photo to the local directory:
 app.post('/upload', (req, res) => {
 
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
@@ -161,7 +150,7 @@ app.post('/upload', (req, res) => {
 });
 
 
-//get file name of most recent photo:
+//Get filename of most recent photo:
 app.get('/mostRecentPhoto', function (req, res) {
    
   var con = mysql.createConnection({
@@ -171,7 +160,7 @@ app.get('/mostRecentPhoto', function (req, res) {
     database: "doggydate"
   });
 
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
@@ -184,7 +173,7 @@ app.get('/mostRecentPhoto', function (req, res) {
   });
 });
 
-//Post new photo file name to database. 
+//Post new photo filename to database: 
 app.post('/newPhotoName', function(req,res){
   const con = mysql.createConnection({
     host: "localhost",
@@ -196,8 +185,8 @@ app.post('/newPhotoName', function(req,res){
   try {
       const userName = req.body.Username;
       const photoID = req.body.PhotoID;
-      console.log(req.body);
-      console.log(userName + " " + photoID);
+      console.log(req.body); //For testing only.
+      console.log(userName + " " + photoID); //For testing only.
         con.query("INSERT INTO photos SET ?",{Username: userName, PhotoID: photoID} , function (err, result) {
           if (err) throw err.message;  
         });
@@ -207,11 +196,8 @@ app.post('/newPhotoName', function(req,res){
     }
 });
 
-//****************************************************************************
 
-
-//****************************************************************************
-//Log in
+//******************************Log in****************************************
 app.post('/login', function(req,res){
   const con = mysql.createConnection({
     host: "localhost",
@@ -258,10 +244,7 @@ app.post('/login', function(req,res){
   }
 
 });
-//****************************************************************************
-
-//****************************************************************************
-//Log out
+//******************************Log out***************************************
 app.post('/logout', function(req,res){
   req.session.destroy(function(err){
        if(err){
@@ -271,10 +254,9 @@ app.post('/logout', function(req,res){
        res.status(200).json({message:'User Session removed'});
   })
 });
-//****************************************************************************
 
-//****************************************************************************
-//Create match
+
+//************************Create And Destroy Matches**************************
 app.post('/matches', function(req,res){
   const con = mysql.createConnection({
     host: "localhost",
@@ -309,10 +291,6 @@ app.post('/matches', function(req,res){
         //the like button, nothing will happen. 
         else {
           res.status(200).json({status:200, message:'Match already exists. No action taken.'});
-          // con.query("UPDATE matches SET Reciprocated=0 WHERE Liker=? and Likee=?",[result[0].Liker, result[0].Likee], function (err, result) {
-          //   if (err) throw err.message;
-          //   res.status(200).json({status:200, message:'Match already exists. No action taken.'});
-          // });
         }
      });
     }
@@ -354,7 +332,7 @@ app.post('/destroyMatch', function(req,res){
     }
 });
 
-//Get data from user_details table matches only
+//Get data from user_details table for matches only:
 app.get('/getMatchDetails', function (req, res) {
    
   var con = mysql.createConnection({
@@ -364,7 +342,7 @@ app.get('/getMatchDetails', function (req, res) {
     database: "doggydate"
   });
   
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
   var query =   "SELECT * " +
                 "FROM user_details AS U " +
                 "WHERE U.Username IN ((SELECT Likee AS Username " +  
@@ -383,11 +361,11 @@ app.get('/getMatchDetails', function (req, res) {
     });
   });
 });
-//****************************************************************************
 
 
-//****************************************************************************
-//Get Requests
+//**********************************Get Requests********************************************
+//NOTE: Some of these get requests were written early in the development process and 
+//may not have been used. (Ian)
 
 //Get data from user table for one or all users. 
 app.get('/users', function (req, res) {
@@ -399,18 +377,18 @@ app.get('/users', function (req, res) {
     database: "doggydate"
   });
 
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
  
-    if(qs.Username) {//send user data for specified user name
+    if(qs.Username) {//Get user data for specified username.
       con.query("SELECT * FROM users WHERE Username=?", [qs.Username], function (err, result, fields) {
         if (err) throw err;
         res.send(result);
       });
     }
-    else { //Send user data for all users
+    else { //Get user data for all users.
       con.query("SELECT * FROM users", function (err, result, fields) {
         if (err) throw err;
 
@@ -430,19 +408,19 @@ app.get('/user_details', function (req, res) {
     database: "doggydate"
   });
   
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
  
-    if(qs.Username) {//send user data for specified user name
+    if(qs.Username) {//Get user data for specified username.
       con.query("SELECT * FROM user_details WHERE Username=?", [qs.Username], function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
       });
     }
-    else { //Send user data for all users
+    else { //Get user data for all users.
       con.query("SELECT * FROM user_details", function (err, result, fields) {
         if (err) throw err;
 
@@ -463,7 +441,7 @@ app.get('/meetUsers', function (req, res) {
     database: "doggydate"
   });
   
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
@@ -473,8 +451,6 @@ app.get('/meetUsers', function (req, res) {
 
         res.send(result);
       });
-    
-
   });
 });
 
@@ -488,18 +464,18 @@ app.get('/photos', function (req, res) {
     database: "doggydate"
   });
 
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
-    if(qs.Username) {//send user data for specified user name
+    if(qs.Username) {//Get user data for specified username.
       con.query("SELECT * FROM photos WHERE Username=? ORDER BY PhotoID ASC", [qs.Username], function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
       });
     }
-    else { //Send user data for all users
+    else { //Get user data for all users.
       con.query("SELECT * FROM photos", function (err, result, fields) {
         if (err) throw err;
 
@@ -521,19 +497,19 @@ app.get('/matches', function (req, res) {
   });
 
 
-  var qs = ((url.parse(req.url, true))).query;  //get the query string from the request
+  var qs = ((url.parse(req.url, true))).query; //Get the query string from the request.
 
   con.connect(function(err) {
     if (err) throw err;
  
-    if(qs.Username) {//send user data for specified user name
+    if(qs.Username) {//Get user data for specified user name.
       con.query("SELECT * FROM matches WHERE Liker=?", [qs.Liker], function (err, result, fields) {
         if (err) throw err;
 
         res.send(result);
       });
     }
-    else { //Send user data for all users
+    else { //Get user data for all users.
       con.query("SELECT * FROM matches", function (err, result, fields) {
         if (err) throw err;
 
@@ -542,13 +518,10 @@ app.get('/matches', function (req, res) {
     }
   });
 });
-//****************************************************************************
 
-//****************************************************************************
-//Post Requests
+//****************************Create User Profile*********************************
 
-//Post Profile data to user_details table
-
+//Post Profile data to user_details table:
 app.post('/user_details', function(req,res){
   const con = mysql.createConnection({
     host: "localhost",
@@ -579,8 +552,8 @@ app.post('/user_details', function(req,res){
     }
 });
 
-//****************************************************************************
 
+//***************************Listen for Connections***************************************
 
 //Socket.io requires the connection to be an http connection. 
 http.listen(3001, function() {

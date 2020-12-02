@@ -1,11 +1,10 @@
+//This is the Chat component which allows matched users to chat with each other. 
 import React, {useEffect, useState} from "react";
 import './chat.css';
 import io from 'socket.io-client'
 const socket = io.connect('http://localhost:3001')
 
 function Chat(props) { 
-  console.log('test:chat');//for testing only
-  
   var currentUser = (JSON.parse(localStorage.getItem('userInfo'))).userName;
   var currentMatch = props.matchUserName;
   var room = '';
@@ -15,7 +14,7 @@ function Chat(props) {
 
   //Create a new room. The room name will be the two usernames with a 
   //dash inbetween. The user name that comes first alphabetically will 
-  //come first in the room name. This ensures that the room name
+  //come first in the room name; this ensures that the room name
   //is the same for both users. 
   if(currentUser <= currentMatch)
     room = currentUser + '-' + currentMatch;
@@ -47,7 +46,7 @@ function Chat(props) {
     setCurrentMessage({ ...currentMessage, message: e.target.value });
   }
 
-  //When the user submits the message, emit it to the socket.io server:
+  //When the user submits a message, emit it to the socket.io server:
   const onMessageSubmit = e => {
     e.preventDefault();
     const { name, message } = currentMessage;
@@ -61,6 +60,7 @@ function Chat(props) {
   // var x = document.querySelector('render-chat');
   // x.scrollTop = x.scrollHeight;
 
+  
   //Display the chat messges in the chat window:
   const renderChat = () => {
     return chat.map(({ name, message }, index) => (

@@ -12,8 +12,8 @@ function PhotoUpload(){
   var username = authState.userInfo.userName;
 
 
-//Get the last photo name which will be used to generate a name for 
-//the new photo:
+//Get the filename of the last uploaded photo for the user. This will be be used 
+//to generate a filename for the new photo:
   useEffect (() => {
     fetchMostRecentPhotoName();
   }, []);
@@ -29,14 +29,14 @@ function PhotoUpload(){
       }
   }
 
-  //Funciton to geneate a new photo name of the new photo:
+  //Function to geneate a new filename for the new photo:
   function generateNewPhotoName(previousPhotoName) {
 
-      //Remove user name from file name:
+      //Remove username from the filename:
       var tempStr = previousPhotoName.replace(username,"");
       console.log("tempStr: " + tempStr + typeof(tempStr));
 
-      //Extract the numeric substring at the end of the file name:
+      //Extract the numeric substring at the end of the filename:
       var tempStr2 = tempStr.replace(/[^0-9]+/ig,"");
       console.log("tempStr2: " + tempStr2 + typeof(tempStr2));
 
@@ -48,30 +48,27 @@ function PhotoUpload(){
       tempInt += 1;
       console.log("tempInt + 1: " + tempInt + typeof(tempInt));
   
-      //Crete a new file name using the incremented number:
+      //Crete a new filename using the incremented number:
       var newName = `${username}-pic${tempInt}` 
 
       return(newName);
   }
 
-
- 
 //Retrieve the new photo from the form:
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
   };
 
-
 //Send the photo to the server which will redirect it to local file storage. A new file
-//will be created if none exists. Send the file name to the database. 
+//will be created if none exists. Then, send the filename to the database. 
   const onSubmit = async e => {
 
     //If no file has been uploaded, do nothing: 
     if(file === '')
       return;
 
-    //Generate new photo name:
+    //Generate new filename name:
     var newPhotoName = '';
     if(lastPhotoName != ''){
       console.log(true);
@@ -107,7 +104,7 @@ function PhotoUpload(){
       }
     }
 
-    //Post File name to database:
+    //Post filename to database:
     const newPhotoDetails = {
       Username: username,
       PhotoID: newPhotoName
@@ -134,7 +131,7 @@ function PhotoUpload(){
         console.error('Error:', error);
       });
 
-      //Return the file state variable to '';
+      //Return the file state variable to an empty string;
       setFile('');
     };
 
